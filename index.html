@@ -43,10 +43,56 @@ background-size:470px 390px;animation:starDrift 105s linear infinite reverse,sta
 .domain-items span{font-size:12px;line-height:1.4;color:#34445f;background:#edf3ff;border:1px solid #e1eaff;border-radius:999px;padding:7px 10px;margin-top:9px}
 @media(max-width:800px){.domain-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.domain-grid{grid-template-columns:1fr}.domain-card summary{padding:15px}}
-.specialty{appearance:none;border:1px solid #e1eaff;cursor:pointer;font:inherit;font-size:12px;line-height:1.4;color:#34445f;background:#edf3ff;border-radius:999px;padding:7px 10px;margin-top:9px;transition:background .18s ease,border-color .18s ease,transform .18s ease}.specialty:hover{background:#e0eaff;border-color:#a9c2f4;transform:translateY(-1px)}.specialty[aria-pressed="true"]{background:#dce8ff;border-color:#648ee0;color:#183d83;box-shadow:0 0 0 2px #648ee022}.adviser-status{display:flex;gap:14px;align-items:flex-start;margin-top:24px;padding:18px 20px;border:1px solid #dce6f7;border-radius:17px;background:linear-gradient(110deg,#ffffffed,#eef4ffed);box-shadow:0 8px 24px #29436b0a;color:#263653}.status-mark{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:11px;background:#e4edff;color:#416cc0;font-size:18px}.adviser-status b{display:block;font-size:15px}.adviser-status p{margin:4px 0 0;color:#63728a;font-size:13px}</style>
+.specialty{appearance:none;border:1px solid #e1eaff;cursor:pointer;font:inherit;font-size:12px;line-height:1.4;color:#34445f;background:#edf3ff;border-radius:999px;padding:7px 10px;margin-top:9px;transition:background .18s ease,border-color .18s ease,transform .18s ease}.specialty:hover{background:#e0eaff;border-color:#a9c2f4;transform:translateY(-1px)}.specialty[aria-pressed="true"]{background:#dce8ff;border-color:#648ee0;color:#183d83;box-shadow:0 0 0 2px #648ee022}.adviser-status{display:flex;gap:14px;align-items:flex-start;margin-top:24px;padding:18px 20px;border:1px solid #dce6f7;border-radius:17px;background:linear-gradient(110deg,#ffffffed,#eef4ffed);box-shadow:0 8px 24px #29436b0a;color:#263653}.status-mark{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:11px;background:#e4edff;color:#416cc0;font-size:18px}.adviser-status b{display:block;font-size:15px}.adviser-status p{margin:4px 0 0;color:#63728a;font-size:13px}
+/* TechBridge animated welcome presentation */
+.welcome-video{padding:34px 0 58px;background:linear-gradient(120deg,#eef5ffdd,#f5f1ffdd);border-bottom:1px solid #e3eaf6}
+.video-shell{max-width:1000px;margin:auto;border:1px solid #d9e4f7;border-radius:24px;overflow:hidden;background:#101a32;box-shadow:0 22px 60px #243c681f}
+.video-screen{position:relative;min-height:390px;aspect-ratio:16/7;display:grid;place-items:center;overflow:hidden;padding:42px 8%;text-align:center;color:#fff;background:radial-gradient(circle at 18% 20%,#426fc8 0,transparent 34%),radial-gradient(circle at 84% 78%,#7654b5 0,transparent 34%),linear-gradient(125deg,#101b35,#172b50 55%,#251b45)}
+.video-screen:before,.video-screen:after{content:"";position:absolute;width:330px;height:330px;border:1px solid #ffffff18;border-radius:50%;animation:videoOrbit 24s linear infinite}
+.video-screen:before{left:-100px;top:-170px;box-shadow:0 0 0 35px #ffffff08,0 0 0 75px #ffffff05}
+.video-screen:after{right:-120px;bottom:-220px;width:430px;height:430px;animation-direction:reverse}
+@keyframes videoOrbit{to{transform:rotate(360deg)}}
+.video-scene{position:relative;z-index:1;max-width:760px;animation:sceneIn .7s ease both}
+@keyframes sceneIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.video-kicker{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#bfdbfe;font-weight:800}
+.video-scene h2{font-size:clamp(30px,4.4vw,52px);line-height:1.08;letter-spacing:-1.4px;margin:17px 0}
+.video-scene p{font-size:clamp(15px,2vw,19px);color:#dbeafe;max-width:690px;margin:0 auto}
+.video-brand{position:absolute;left:24px;top:20px;z-index:2;font-weight:850;letter-spacing:.2px}
+.video-brand span{display:inline-grid;place-items:center;width:29px;height:29px;margin-right:8px;border-radius:9px;background:#3978ed}
+.video-controls{display:flex;align-items:center;gap:15px;padding:17px 20px;background:#fff}
+.video-play{border:0;border-radius:999px;padding:12px 18px;background:#2563eb;color:#fff;font:inherit;font-weight:750;cursor:pointer;white-space:nowrap}
+.video-play:hover{background:#1d4ed8}
+.video-meta{flex:1;min-width:0}
+.video-meta strong{display:block;font-size:13px}
+.video-meta small{color:#64748b}
+.video-progress{height:5px;background:#e7edf8;border-radius:9px;overflow:hidden;margin-top:8px}
+.video-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#2563eb,#8b5cf6);transition:width .35s ease}
+.video-caption{max-width:1000px;margin:12px auto 0;text-align:center;color:#64748b;font-size:13px}
+@media(max-width:650px){.video-screen{aspect-ratio:4/3;min-height:320px;padding:38px 22px}.video-controls{align-items:flex-start;flex-wrap:wrap}.video-meta{flex-basis:100%;order:2}.video-play{order:1}}
+@media(prefers-reduced-motion:reduce){.video-screen:before,.video-screen:after,.video-scene{animation:none}}
+
+</style>
 </head>
 <body>
 <header class="wrap nav"><a class="brand" href="#"><span class="mark">↗</span>TechBridge</a><select class="lang" id="language" aria-label="Choose language"><option value="en">English</option><option value="te">తెలుగు</option><option value="hi">हिन्दी</option><option value="ml">മലയാളം</option></select></header>
+
+<section class="welcome-video" aria-labelledby="welcomeHeading">
+ <div class="wrap">
+  <div style="text-align:center;margin-bottom:18px"><span class="tag">A message from TechBridge</span><h2 id="welcomeHeading" style="font-size:clamp(25px,3vw,34px);margin:12px 0 5px">Welcome to TechBridge</h2><p class="sub" style="margin:0">Discover your direction. Keep learning. Build your future.</p></div>
+  <div class="video-shell">
+   <div class="video-screen" id="welcomeScreen" aria-live="polite">
+    <div class="video-brand"><span>↗</span>TechBridge</div>
+    <div class="video-scene" id="welcomeScene"><div class="video-kicker">Your journey starts here</div><h2>Every great future begins with a direction.</h2><p>Welcome to TechBridge — guidance for every stage of your journey.</p></div>
+   </div>
+   <div class="video-controls">
+    <button class="video-play" id="welcomePlay" type="button">▶ Play welcome</button>
+    <div class="video-meta"><strong id="welcomeStatus">A short introduction to TechBridge</strong><small id="welcomeStep">Scene 1 of 5 · English narration</small><div class="video-progress"><span id="welcomeProgress"></span></div></div>
+   </div>
+  </div>
+  <p class="video-caption">Press Play welcome to hear the narration. The voice is generated by your browser; availability and voice quality depend on the device and browser.</p>
+ </div>
+</section>
+
 <main>
 <section class="wrap hero"><div><span class="tag" id="tag">A clearer path to your future</span><h1 id="headline">Your next chapter starts with the right guidance.</h1><p class="lead" id="intro">Explore careers across every domain, speak with people who work in the industry, and build a practical plan for what comes next.</p><div class="actions"><a class="btn primary" href="#domains" id="explore">Explore career paths →</a><a class="btn secondary" href="#register" id="join">Join as an adviser</a></div><p class="trust">✓ Adviser profiles are reviewed before publication</p></div>
 <div class="panel"><h2>One place for your next step</h2><div class="feature"><span class="ico">🎓</span><div><b>Explore after Grade 10 or 12</b><p>Compare academic, vocational and skill-based paths.</p></div></div><div class="feature"><span class="ico">🤝</span><div><b>Meet experienced advisers</b><p>Get guidance from people who understand the work.</p></div></div><div class="feature"><span class="ico">📚</span><div><b>Build a learning plan</b><p>Get practical recommendations and next steps.</p></div></div><div class="feature"><span class="ico">💼</span><div><b>Find opportunities</b><p>Connect with organizations and relevant openings.</p></div></div></div></section>
@@ -61,5 +107,25 @@ hi:{tag:"आपके भविष्य के लिए सही मार्
 ml:{tag:"നിങ്ങളുടെ ഭാവിക്ക് ശരിയായ മാർഗ്ഗനിർദ്ദേശം",headline:"ശരിയായ മാർഗ്ഗനിർദ്ദേശത്തോടെ അടുത്ത അധ്യായം ആരംഭിക്കൂ.",intro:"വിവിധ മേഖലകളിലെ കരിയർ സാധ്യതകൾ കണ്ടെത്തൂ, പരിചയസമ്പന്നരുമായി സംസാരിക്കൂ, അടുത്ത ചുവടുകൾക്കായി പദ്ധതി തയ്യാറാക്കൂ.",explore:"കരിയർ വഴികൾ കണ്ടെത്തുക →",join:"ഉപദേശകനായി ചേരുക"}};
 document.getElementById('language').addEventListener('change',e=>{const t=translations[e.target.value];for(const id of ['tag','headline','intro','explore','join'])document.getElementById(id).textContent=t[id]});
 function setRole(role){document.getElementById('studentTab').classList.toggle('active',role==='student');document.getElementById('adviserTab').classList.toggle('active',role==='adviser');document.getElementById('bioField').classList.toggle('hidden',role!=='adviser')}document.querySelectorAll('.specialty').forEach(button=>{button.setAttribute('aria-pressed','false');button.addEventListener('click',()=>{document.querySelectorAll('.specialty[aria-pressed="true"]').forEach(item=>item.setAttribute('aria-pressed','false'));button.setAttribute('aria-pressed','true');const area=button.dataset.specialty;document.getElementById('adviserStatus').innerHTML='<span class="status-mark">✦</span><div><b>'+area+': adviser availability</b><p>We’re still looking for a suitable, experienced adviser in this area. There isn’t a verified adviser listed yet. We’re working to build our adviser network, so please check back soon.</p></div>';});});
+
+/* Animated welcome story with browser speech narration */
+(()=>{
+ const scenes=[
+  {k:"YOUR JOURNEY STARTS HERE",h:"Every great future begins with a direction.",p:"Welcome to TechBridge — guidance for every stage of your journey.",v:"Hi everyone, and welcome to TechBridge. We created this platform to help people discover the right direction for their education, career, and future."},
+  {k:"FOR YOUNG LEARNERS",h:"Not sure what comes after school?",p:"Explore options after Grade 10, Grade 12, diploma, or graduation.",v:"If you are studying in school, have completed Grade 10 or Grade 12, or are pursuing a diploma or degree, choosing your next step can feel confusing. TechBridge helps you explore different fields and understand the paths available to you."},
+  {k:"LEARN FROM EXPERIENCE",h:"Get guidance from people who know the work.",p:"Connect with experienced advisers across many industries and professions.",v:"Our goal is to connect learners with experienced advisers from different industries. Their knowledge and real world experience can help you understand what a career involves, what skills are useful, and how to prepare."},
+  {k:"LEARNING NEVER STOPS",h:"Your next chapter can start at any age.",p:"For working professionals, career changers, and curious lifelong learners.",v:"TechBridge is not only for students. If you are already working and want to learn new skills, grow in your current role, explore another industry, or change your career, this platform is also for you. Learning has no age limit."},
+  {k:"LET'S BUILD WHAT'S NEXT",h:"Connect experience with ambition.",p:"Explore. Ask questions. Keep learning. Take your next step with confidence.",v:"We want to bring learners, experienced advisers, and future opportunities together in one place. Explore the career areas, find the guidance you need, and take your next step with confidence. Welcome to TechBridge."}
+ ];
+ const sceneEl=document.getElementById('welcomeScene'),play=document.getElementById('welcomePlay'),status=document.getElementById('welcomeStatus'),step=document.getElementById('welcomeStep'),progress=document.getElementById('welcomeProgress');
+ if(!sceneEl||!play)return;
+ let index=0,playing=false,token=0;
+ function show(i){index=i;const s=scenes[i];sceneEl.innerHTML='<div class="video-kicker">'+s.k+'</div><h2>'+s.h+'</h2><p>'+s.p+'</p>';step.textContent='Scene '+(i+1)+' of '+scenes.length+' · English narration';progress.style.width=((i+1)/scenes.length*100)+'%';}
+ function stop(){playing=false;token++;if('speechSynthesis'in window)window.speechSynthesis.cancel();play.textContent='▶ Play again';status.textContent='Welcome presentation paused';}
+ function start(){if(!('speechSynthesis'in window)||!('SpeechSynthesisUtterance'in window)){status.textContent='Your browser does not support spoken narration. You can still read each animated scene.';return;}window.speechSynthesis.cancel();const run=++token;playing=true;play.textContent='■ Stop';status.textContent='Playing TechBridge welcome';let i=0;function next(){if(!playing||run!==token)return;if(i>=scenes.length){playing=false;play.textContent='↻ Play again';status.textContent='Thanks for watching — welcome to TechBridge!';show(scenes.length-1);return;}show(i);const utterance=new SpeechSynthesisUtterance(scenes[i].v);utterance.lang='en-US';utterance.rate=.94;utterance.pitch=1;utterance.onend=()=>{if(playing&&run===token){i++;next();}};utterance.onerror=()=>{if(playing&&run===token){status.textContent='Narration could not play on this device. Try another browser.';stop();}};window.speechSynthesis.speak(utterance);}next();}
+ play.addEventListener('click',()=>{if(playing)stop();else{show(0);start();}});
+ show(0);
+})();
+
 </script>
 </body></html>
