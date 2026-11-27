@@ -179,22 +179,69 @@ body{background:#fffdf9;color:var(--friendly-ink);font-family:Inter,ui-sans-seri
 .footer{padding:25px;text-align:center;color:#8992a2;font-size:13px}
 @media(max-width:800px){.motion-wrap{grid-template-columns:1fr;gap:28px}.motion-stage{justify-self:center;height:330px}.motion-copy h2{font-size:38px}.public-hero{grid-template-columns:1fr;padding-top:48px;gap:32px}.public-visual{min-height:340px}}
 @media(prefers-reduced-motion:reduce){.orbit,.motion-person,.floating-note{animation:none!important}.motion-progress span{transition:none}}
+
+/* Cinematic family story — bespoke illustration, not a stock template */
+body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),radial-gradient(ellipse at 90% 22%,#4a315e 0,transparent 32%),linear-gradient(145deg,#10182b,#18233b 58%,#202b3d)!important;color:#f5f0e9!important}
+.nav{color:#fff}.brand{color:#fff}.main-nav a{color:#d4d9e8}.country-clock select,.local-time{background:#202c43;color:#f7f1e9;border-color:#526079}
+.motion-intro{max-width:1200px;margin:22px auto 52px;padding:30px clamp(18px,4vw,48px) 44px!important;border:1px solid #ffffff20;border-radius:30px;background:radial-gradient(ellipse at 85% 15%,#69507855,transparent 35%),linear-gradient(120deg,#202f48,#2a2b43 62%,#263e46)!important;box-shadow:0 30px 90px #060c19aa}
+.cinema-top{max-width:1120px;margin:0 auto 10px;display:flex;justify-content:space-between;gap:14px;color:#d6c6b4;font-size:11px;letter-spacing:1.7px;font-weight:850}.cinema-duration{letter-spacing:.5px;color:#aebbd0}
+.motion-wrap{max-width:1120px;min-height:500px;padding:0!important;display:grid;grid-template-columns:.82fr 1.18fr;gap:35px;align-items:center}
+.motion-copy h2{color:#fff8ed;font-size:clamp(34px,4.2vw,55px);letter-spacing:-2px;line-height:1.05}.motion-copy>p{color:#d0d6df;font-size:16px;line-height:1.75}.friendly-kicker{color:#f3b68e!important}
+.motion-actions button{border-radius:999px;background:linear-gradient(110deg,#f4b58b,#e78f82);color:#2a2634;padding:13px 18px;box-shadow:0 10px 25px #070b2366}.motion-actions .motion-quiet{background:#ffffff10;color:#f4eee5;border:1px solid #ffffff3a;box-shadow:none}.motion-actions #motionVoice{background:linear-gradient(110deg,#b9e0d0,#b8c9ed);color:#263448}
+.motion-progress{background:#ffffff24}.motion-progress span{background:linear-gradient(90deg,#f2b18a,#b5c4e9)}.motion-caption{color:#e5d9cb!important;min-height:42px}
+.family-scene{height:auto;min-height:390px;aspect-ratio:680/430;max-width:680px;width:100%;justify-self:end;position:relative;overflow:hidden;border-radius:25px;background:linear-gradient(150deg,#293b55,#283047 65%,#46384c);box-shadow:0 28px 65px #060b1a88;border:1px solid #ffffff22;isolation:isolate}
+.family-art{position:absolute;inset:0;width:100%;height:100%;z-index:2}.scene-window{position:absolute;left:5%;top:8%;width:24%;height:32%;border:5px solid #75869a;border-radius:9px;background:linear-gradient(145deg,#637f99,#293e5c);z-index:1;overflow:hidden}.scene-window span{position:absolute;bottom:0;width:100%;height:30%;background:#d49b75;opacity:.45}.scene-window span:nth-child(2){height:60%;width:2px;left:50%;background:#b5c3d1}.scene-window span:nth-child(3){height:2px;bottom:50%;background:#b5c3d1}.scene-lamp{position:absolute;right:18%;top:8%;width:4px;height:90px;background:#8d8190;z-index:1}.scene-lamp:before{content:"";position:absolute;top:-9px;left:-25px;width:54px;height:30px;background:#f6c18d;border-radius:50% 50% 9px 9px;box-shadow:0 0 45px #ffc68a99}.scene-glow{position:absolute;right:4%;top:12%;width:48%;height:65%;background:radial-gradient(ellipse,#eab68b1a,transparent 68%);z-index:1}
+.scene-bubble{position:absolute;z-index:5;opacity:0;transform:translateY(10px) scale(.95);padding:10px 15px;border-radius:15px 15px 15px 4px;background:#f5e8d7;color:#273047;font-size:clamp(10px,1.2vw,14px);font-weight:750;box-shadow:0 10px 24px #080d1d55;transition:opacity .6s,transform .6s;max-width:43%}.bubble-one{left:27%;top:8%}.bubble-two{right:5%;top:25%;background:#d8eee5}.bubble-three{left:39%;top:12%;background:#e0e5fa}
+.family-scene[data-scene="1"] .bubble-one,.family-scene[data-scene="2"] .bubble-one,.family-scene[data-scene="3"] .bubble-two,.family-scene[data-scene="4"] .bubble-three,.family-scene[data-scene="5"] .bubble-two{opacity:1;transform:translateY(0) scale(1)}
+.scene-label{position:absolute;z-index:6;bottom:13px;left:15px;right:15px;display:flex;align-items:center;gap:9px;padding:10px 13px;border-radius:12px;background:#101b2dcc;color:#f1e9df;font-size:11px;letter-spacing:.4px;backdrop-filter:blur(8px)}.scene-live-dot{width:7px;height:7px;border-radius:50%;background:#8ee0bd;box-shadow:0 0 0 4px #8ee0bd22}
+.young-character,.parent-character,.other-parent{transform-box:fill-box;transform-origin:center bottom;animation:familyBreath 4s ease-in-out infinite}.parent-character{animation-delay:-1.5s}.other-parent{animation-delay:-2.5s}
+.laptop{animation:laptopGlow 3.5s ease-in-out infinite}.scene-sparkles{animation:sparkle 3s ease-in-out infinite alternate;transform-origin:center}
+@keyframes familyBreath{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}@keyframes laptopGlow{0%,100%{filter:drop-shadow(0 0 0 #8de2d100)}50%{filter:drop-shadow(0 0 12px #8de2d177)}}@keyframes sparkle{from{opacity:.3}to{opacity:1}}
+.public-hero{background:linear-gradient(120deg,#25334c,#342c48 65%,#26464b)!important;border:1px solid #ffffff20!important;border-radius:28px;box-shadow:0 25px 70px #060b1a77}.public-hero h1,.public-hero h2,.public-section h2,.public-gate h2{color:#fff7ed!important}.public-eyebrow{color:#efb18c!important}.public-hero p{color:#d0d7e2!important}.public-visual{background:linear-gradient(145deg,#4b4569,#2f5960)!important}.public-section{color:#fff}.public-step{background:linear-gradient(145deg,#29354d,#302c46)!important;border-color:#ffffff20!important}.public-step h3{color:#fff}.public-step p{color:#c9d2df!important}.public-gate{background:linear-gradient(110deg,#36565c,#49405d)!important;border:1px solid #ffffff24}
+@media(max-width:850px){.motion-wrap{grid-template-columns:1fr;gap:22px}.family-scene{justify-self:center;min-height:0}.motion-intro{margin:12px 12px 34px}.cinema-top{padding:0 3px}.motion-copy h2{max-width:650px}}
+@media(max-width:520px){.family-scene{aspect-ratio:1/1;min-height:290px}.scene-bubble{font-size:10px;padding:7px 9px}.motion-actions button{font-size:12px;padding:11px 13px}.cinema-top{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.family-art *,.scene-sparkles{animation:none!important}.scene-bubble{transition:none}}
 </style></head>\n<body>
 <header class="wrap nav"><a class="brand" href="#"><span class="mark">↗</span>TechBridge</a><nav class="main-nav"><a href="#welcomeHeading">Introduction</a><a href="#how-it-works">How it works</a><a href="login.html">Log in</a></nav><div class="country-clock"><select id="countryTimeZone" aria-label="Choose your country and time zone"><option value="Asia/Kolkata">🇮🇳 India</option><option value="Europe/Vienna">🇦🇹 Austria</option><option value="Europe/London">🇬🇧 United Kingdom</option><option value="Europe/Berlin">🇩🇪 Germany</option><option value="Europe/Paris">🇫🇷 France</option><option value="America/New_York">🇺🇸 United States — Eastern</option><option value="America/Chicago">🇺🇸 United States — Central</option><option value="America/Denver">🇺🇸 United States — Mountain</option><option value="America/Los_Angeles">🇺🇸 United States — Pacific</option><option value="America/Toronto">🇨🇦 Canada — Eastern</option><option value="America/Vancouver">🇨🇦 Canada — Pacific</option><option value="Asia/Dubai">🇦🇪 United Arab Emirates</option><option value="Asia/Singapore">🇸🇬 Singapore</option><option value="Asia/Kuala_Lumpur">🇲🇾 Malaysia</option><option value="Asia/Tokyo">🇯🇵 Japan</option><option value="Australia/Sydney">🇦🇺 Australia — Sydney</option><option value="Pacific/Auckland">🇳🇿 New Zealand</option><option value="Africa/Johannesburg">🇿🇦 South Africa</option></select><div class="local-time" aria-live="off"><small id="timeZoneLabel">Local time · India</small><span id="countryLocalTime">--:--:--</span></div></div></header>
 <section class="motion-intro" aria-labelledby="welcomeHeading">
+ <div class="cinema-top"><span class="cinema-kicker">A TECHBRIDGE STORY</span><span class="cinema-duration">A short story · 40 seconds</span></div>
  <div class="motion-wrap">
-  <div class="motion-copy"><span class="friendly-kicker">A LITTLE INTRODUCTION</span><h2 id="welcomeHeading">A place to figure out your next step.</h2><p>Whether you're choosing a path, growing at work, sharing experience or hiring talent, there's a place for you here.</p>
-   <div class="motion-actions"><button id="motionPlay" type="button">▶ Play the introduction</button><button id="motionPause" type="button" class="motion-quiet">Pause</button><button id="motionVoice" type="button">🔊 Play with voice</button></div>
-   <div class="motion-progress"><span id="motionProgress"></span></div><p class="motion-caption" id="motionCaption" aria-live="polite">Meet the people and possibilities that make TechBridge.</p>
+  <div class="motion-copy">
+   <span class="friendly-kicker">CAREERS ARE FAMILY CONVERSATIONS</span>
+   <h2 id="welcomeHeading">Big dreams often begin around a small table.</h2>
+   <p>Choosing a future can feel like a big decision. You don't have to figure it out alone. Bring your questions, your family and your hopes. We'll help you find a way forward.</p>
+   <div class="motion-actions"><button id="motionPlay" type="button">▶ Watch the story</button><button id="motionPause" type="button" class="motion-quiet">Pause</button><button id="motionVoice" type="button">🔊 Watch with voice</button></div>
+   <div class="motion-progress"><span id="motionProgress"></span></div>
+   <p class="motion-caption" id="motionCaption" aria-live="polite">One evening, a family sits together to talk about the future…</p>
   </div>
-  <div class="motion-stage" id="motionStage" aria-label="Animated illustration of people learning, advising and working together">
-   <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-   <div class="sun-disc"></div>
-   <div class="motion-person person-one"><span>🎓</span><b>Learner</b></div>
-   <div class="motion-person person-two"><span>🧑‍💻</span><b>Adviser</b></div>
-   <div class="motion-person person-three"><span>💼</span><b>Employer</b></div>
-   <div class="motion-center"><span>↗</span><strong>TechBridge</strong><small>Find your next step</small></div>
-   <div class="floating-note note-one">Learn something new ✨</div><div class="floating-note note-two">Real people. Real guidance.</div>
+  <div class="motion-stage family-scene" id="motionStage" data-scene="1" role="img" aria-label="Animated illustration of a young person talking with family around a table, with a career adviser joining on a laptop">
+   <div class="scene-window"><span></span><span></span><span></span></div><div class="scene-lamp"></div><div class="scene-glow"></div>
+   <div class="scene-bubble bubble-one">What should I do after school?</div>
+   <div class="scene-bubble bubble-two">Let's explore your options together.</div>
+   <div class="scene-bubble bubble-three">You don't have to decide alone.</div>
+   <svg class="family-art" viewBox="0 0 680 430" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs><linearGradient id="roomWall" x2="0" y2="1"><stop stop-color="#293958"/><stop offset="1" stop-color="#17243b"/></linearGradient><linearGradient id="tableWood" x2="0" y2="1"><stop stop-color="#c58c68"/><stop offset="1" stop-color="#87583f"/></linearGradient><linearGradient id="screenGlow" x2="1" y2="1"><stop stop-color="#8de2d1"/><stop offset="1" stop-color="#8498ee"/></linearGradient></defs>
+    <rect width="680" height="430" fill="url(#roomWall)"/>
+    <path d="M0 320 Q160 300 340 325 T680 310 V430 H0Z" fill="#243650"/>
+    <rect x="35" y="35" width="155" height="135" rx="14" fill="#314d68" stroke="#718ba5" stroke-width="5"/><path d="M112 38V168M38 102H187" stroke="#718ba5" stroke-width="5"/><circle cx="150" cy="65" r="22" fill="#ffd39a" opacity=".9"/>
+    <path d="M0 350Q100 280 200 350V430H0" fill="#6e6b8f" opacity=".45"/>
+    <rect x="475" y="60" width="150" height="12" rx="6" fill="#7f7890"/><path d="M490 72v30m120-30v30" stroke="#7f7890" stroke-width="5"/><path d="M520 60q-15-40 0-45q18 8 0 45" fill="#ffb88d"/><circle cx="520" cy="55" r="24" fill="#ffbd83" opacity=".18"/>
+    <!-- family sofa -->
+    <rect x="75" y="210" width="390" height="120" rx="34" fill="#52617e"/><rect x="92" y="230" width="355" height="86" rx="24" fill="#687795"/><path d="M100 310v38m340-38v38" stroke="#3a4661" stroke-width="14" stroke-linecap="round"/>
+    <!-- parent left -->
+    <g class="parent-character"><path d="M125 300q-5-95 62-95t62 95" fill="#d28d70"/><circle cx="187" cy="174" r="37" fill="#b97960"/><path d="M151 169q-7-40 33-42q44-2 43 38q-19-19-40-18q-19 18-36 22" fill="#282b3e"/><circle cx="174" cy="176" r="3" fill="#20243a"/><circle cx="200" cy="176" r="3" fill="#20243a"/><path d="M179 191q9 7 18 0" stroke="#713f42" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+    <!-- other parent -->
+    <g class="other-parent"><path d="M310 300q0-95 62-95t62 95" fill="#638d9a"/><circle cx="371" cy="174" r="36" fill="#d69b78"/><path d="M336 164q3-47 43-43q39 2 30 43q-23-16-73 0" fill="#43354a"/><circle cx="358" cy="176" r="3" fill="#20243a"/><circle cx="383" cy="176" r="3" fill="#20243a"/><path d="M362 190q9 8 18 0" stroke="#8a4f4b" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+    <!-- young person -->
+    <g class="young-character"><path d="M214 350q0-103 74-103t74 103" fill="#e2a35f"/><circle cx="288" cy="220" r="39" fill="#c98969"/><path d="M250 216q-7-45 36-48q47-2 41 46q-15-22-40-20q-15 16-37 22" fill="#24283b"/><circle cx="275" cy="221" r="3.5" fill="#20243a"/><circle cx="302" cy="221" r="3.5" fill="#20243a"/><path d="M279 239q10 8 20 0" stroke="#713f42" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+    <!-- coffee table -->
+    <path d="M70 345h440l-22 22H92Z" fill="url(#tableWood)"/><path d="M112 365v48m345-48v48" stroke="#744a3d" stroke-width="12"/>
+    <rect x="232" y="312" width="110" height="8" rx="4" fill="#d9d5c9"/><rect x="244" y="290" width="86" height="24" rx="5" fill="#f4eee1"/><path d="M254 300h65" stroke="#9d8e7e" stroke-width="3"/>
+    <!-- laptop and adviser video call -->
+    <g class="laptop"><rect x="490" y="206" width="140" height="100" rx="9" fill="#111a2b" stroke="#a4b4c9" stroke-width="4"/><rect x="499" y="215" width="122" height="81" rx="5" fill="url(#screenGlow)"/><circle cx="560" cy="246" r="18" fill="#9c6857"/><path d="M533 286q2-30 27-30t27 30" fill="#4b547d"/><path d="M485 307h150l-13 12H500Z" fill="#bdc8d5"/></g>
+    <g class="scene-sparkles" fill="#ffd9a1"><path d="M590 135l5 13 13 5-13 5-5 13-5-13-13-5 13-5Z"/><path d="M465 110l4 10 10 4-10 4-4 10-4-10-10-4 10-4Z"/></g>
+   </svg>
+   <div class="scene-floor"></div><div class="scene-label"><span class="scene-live-dot"></span> A conversation that opens possibilities</div>
   </div>
  </div>
 </section>
@@ -220,22 +267,24 @@ body{background:#fffdf9;color:var(--friendly-ink);font-family:Inter,ui-sans-seri
 <footer class="footer">© 2026 TechBridge · Guidance for every stage. Opportunities for every ambition.</footer>
 <script>
 (()=>{const scenes=[
- {caption:"Every journey starts with a question. Explore what could be next.",progress:20},
- {caption:"Learners can discover career paths and make informed choices.",progress:40},
- {caption:"Experienced advisers can share what they know and guide others.",progress:60},
- {caption:"Employers can connect with people and share opportunities.",progress:80},
- {caption:"One welcoming community. Many ways to move forward. Welcome to TechBridge!",progress:100}
+ {caption:"One evening, a family sits together to talk about the future…",voice:"Every family has that conversation. What will you do next? What should you study? Which path will help you build the life you imagine?",duration:7200},
+ {caption:"A young person has questions. The family has hopes, ideas and a few worries.",voice:"A young person has questions. The family has hopes, ideas and a few worries. There are so many choices, and it can be hard to know where to begin.",duration:7600},
+ {caption:"Instead of guessing, they connect with someone who has real experience.",voice:"So they reach out to TechBridge. They meet an experienced adviser who listens, understands their interests, and shares practical guidance from the real world.",duration:7600},
+ {caption:"Together, they explore options and make a practical plan.",voice:"Together, they explore career options, the skills to build, and the steps to take next. The family can be part of the conversation, too.",duration:7600},
+ {caption:"A clearer direction. A little more confidence. A next step.",voice:"The future may still hold questions. But now, they have a direction, a plan, and someone to guide them. TechBridge. Your next step starts with a conversation.",duration:8200}
  ];
  const stage=document.getElementById('motionStage'),caption=document.getElementById('motionCaption'),bar=document.getElementById('motionProgress'),play=document.getElementById('motionPlay'),pause=document.getElementById('motionPause'),voice=document.getElementById('motionVoice');
- if(!stage||!play)return;let timer=null,index=0,withVoice=false;
+ if(!stage||!play)return;let timer=null,index=0,withVoice=false,stopped=false;
  const supported=!!(window.speechSynthesis&&window.SpeechSynthesisUtterance);
- function speak(text){if(!withVoice||!supported)return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=.94;u.pitch=1.02;window.speechSynthesis.speak(u);}
- function show(i){index=i;stage.dataset.scene=String(i+1);caption.textContent=scenes[i].caption;bar.style.width=scenes[i].progress+'%';if(withVoice)speak(scenes[i].caption);}
- function stop(){if(timer)clearInterval(timer);timer=null;if(supported)window.speechSynthesis.cancel();play.textContent='↻ Replay introduction';}
- function run(voiceOn){stop();withVoice=!!voiceOn;show(0);play.textContent='Playing introduction…';if(voice)voice.textContent=withVoice?'🔊 Voice is on':'🔊 Play with voice';timer=setInterval(()=>{if(index>=scenes.length-1){stop();return;}show(index+1);},5600);}
+ function speak(text,onEnd){if(!withVoice||!supported){onEnd();return;}window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=.91;u.pitch=1.02;u.onend=onEnd;u.onerror=onEnd;window.speechSynthesis.speak(u);}
+ function show(i){index=i;stage.dataset.scene=String(i+1);caption.textContent=scenes[i].caption;bar.style.width=((i+1)/scenes.length*100)+'%';}
+ function finish(){if(timer)clearTimeout(timer);timer=null;if(supported)window.speechSynthesis.cancel();play.textContent='↻ Watch the story again';if(voice)voice.textContent='🔊 Watch with voice';}
+ function next(){if(stopped)return;if(index>=scenes.length-1){finish();return;}show(index+1);runScene();}
+ function runScene(){const scene=scenes[index];let advanced=false;const advance=()=>{if(advanced||stopped)return;advanced=true;if(timer)clearTimeout(timer);next();};if(withVoice)speak(scene.voice,advance);timer=setTimeout(advance,scene.duration);}
+ function run(voiceOn){finish();stopped=false;withVoice=!!voiceOn;if(withVoice&&!supported){caption.textContent='Voice is not available in this browser. Please try Chrome, Edge or Safari.';return;}if(voice)voice.textContent=withVoice?'🔊 Voice is on':'🔊 Watch with voice';show(0);play.textContent='Playing the story…';runScene();}
  play.addEventListener('click',()=>run(false));
- if(voice)voice.addEventListener('click',()=>{if(!supported){caption.textContent='Voice playback is not supported in this browser. Try the latest Chrome, Edge or Safari.';return;}run(true);});
- pause.addEventListener('click',()=>{stop();withVoice=false;if(voice)voice.textContent='🔊 Play with voice';});
+ voice.addEventListener('click',()=>run(true));
+ pause.addEventListener('click',()=>{stopped=true;if(timer)clearTimeout(timer);timer=null;if(supported)window.speechSynthesis.cancel();play.textContent='▶ Resume the story';});
  show(0);
 })();
 </script>
