@@ -254,6 +254,15 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
 .film-note{text-align:right;color:#aebbd0;font-size:11px;margin:10px 4px 0}
 @media(max-width:760px){.motion-intro.film-hero{margin:10px 10px 32px;padding:20px 14px 14px!important;border-radius:20px}.film-hero .cinema-top{font-size:10px}.film-hero-copy{margin-bottom:14px}.motion-stage.real-film-stage{height:clamp(330px,85vw,480px);min-height:330px;border-radius:16px}.film-center-control button{width:72px;height:72px}.film-bottom{left:17px;right:17px;bottom:18px}.film-topline{top:16px;left:17px}.film-note{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.real-film-stage .film-clip{transition:none}}
+
+/* Full-bleed film layout: remove the unused left text column */
+.motion-intro.film-hero{max-width:1440px;width:calc(100% - 32px);margin:16px auto 42px;padding:20px 22px 16px!important}
+.film-hero .motion-wrap{display:block!important;padding:0!important;margin:0!important;gap:0!important;width:100%!important}
+.film-hero .film-hero-copy{display:none!important}
+.film-hero .cinema-top{margin:0 2px 12px}
+.film-hero .motion-stage.real-film-stage{width:100%!important;height:clamp(460px,65vw,760px)!important;min-height:460px!important;border-radius:20px}
+@media(min-width:1100px){.film-hero .motion-stage.real-film-stage{height:min(72vh,780px)!important}}
+@media(max-width:760px){.motion-intro.film-hero{width:calc(100% - 20px);margin:10px auto 28px;padding:14px 12px 12px!important}.film-hero .motion-stage.real-film-stage{height:clamp(380px,112vw,590px)!important;min-height:380px!important;border-radius:15px}}
 </style></head>\n<body>
 <header class="wrap nav"><a class="brand" href="#"><span class="mark">↗</span>TechBridge</a><nav class="main-nav"><a href="#welcomeHeading">Introduction</a><a href="#how-it-works">How it works</a><a href="login.html">Log in</a></nav></header>
 <section class="motion-intro film-hero" aria-labelledby="welcomeHeading">
@@ -320,8 +329,8 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
  function finish(){clearTimers();if(voiceWait){clearTimeout(voiceWait);voiceWait=null;}playing=false;paused=false;utterance=null;play.innerHTML='<span class="play-glyph">▶</span><span class="play-label">Play story</span>';play.setAttribute('aria-label','Play TechBridge story with voice');}
  function updateSceneFromChar(pos){let idx=0;for(let i=0;i<starts.length;i++){if(pos>=starts[i])idx=i;}if(idx!==sceneIndex)show(idx);}
  function scheduleFallback(){let elapsed=0;scenes.forEach((x,i)=>{const duration=(x.voice.split(/\s+/).length/2.35)*1000;if(i<scenes.length-1){elapsed+=duration;fallbackTimers.push(setTimeout(()=>{if(playing&&!paused&&!boundarySeen)show(i+1);},elapsed));}});}
- function chooseVoice(){const voices=window.speechSynthesis.getVoices();return voices.find(v=>/^en-IN$/i.test(v.lang)&&/neural|natural|premium/i.test(v.name))||voices.find(v=>/^en-IN$/i.test(v.lang))||voices.find(v=>/Indian English|India/i.test(v.name))||voices.find(v=>/^en-GB$/i.test(v.lang))||voices.find(v=>/^en-US$/i.test(v.lang))||null;}
- function speak(){if(!playing)return;utterance=new SpeechSynthesisUtterance(fullText);utterance.lang='en-IN';utterance.rate=.96;utterance.pitch=1.0;const selected=chooseVoice();if(selected)utterance.voice=selected;
+ function chooseVoice(){const voices=window.speechSynthesis.getVoices();return voices.find(v=>/^en-IN$/i.test(v.lang)&&/neural|natural|premium|google/i.test(v.name))||voices.find(v=>/^en-IN$/i.test(v.lang))||voices.find(v=>/Indian English|India/i.test(v.name))||voices.find(v=>/^en-GB$/i.test(v.lang)&&/natural|neural|google/i.test(v.name))||voices.find(v=>/^en-GB$/i.test(v.lang))||voices.find(v=>/^en-US$/i.test(v.lang))||null;}
+ function speak(){if(!playing)return;utterance=new SpeechSynthesisUtterance(fullText);utterance.lang='en-IN';utterance.rate=.91;utterance.pitch=.96;const selected=chooseVoice();if(selected)utterance.voice=selected;
  utterance.onboundary=e=>{boundarySeen=true;if(typeof e.charIndex==='number')updateSceneFromChar(e.charIndex);};
  utterance.onend=()=>{show(4);finish();};
  utterance.onerror=e=>{if(e.error!=='canceled'&&e.error!=='interrupted'){caption.textContent='Voice playback stopped. Please press play to try again.';}finish();};
