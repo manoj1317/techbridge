@@ -276,6 +276,12 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
 .motion-intro.film-hero{display:block!important;width:calc(100% - 32px)!important;max-width:1440px!important}
 .motion-intro.film-hero>.motion-stage.real-film-stage{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;float:none!important;grid-column:auto!important}
 .motion-intro.film-hero .film-center-control button .play-glyph{font-family:Arial,sans-serif!important;font-weight:700!important;font-size:28px!important}
+
+/* Keep the film unobstructed during playback; the video surface remains the pause control */
+.film-center-control button.is-playing{background:transparent!important;border-color:transparent!important;box-shadow:none!important;opacity:0!important;pointer-events:auto!important}
+.film-center-control button.is-playing .play-glyph,.film-center-control button.is-playing .play-label{display:none!important}
+.film-center-control button.is-playing:hover{opacity:.16!important;background:#ffffff22!important}
+.film-center-control button.is-playing:focus-visible{opacity:1!important;outline:3px solid #fff!important}
 </style></head>\n<body>
 <header class="wrap nav"><a class="brand" href="#"><span class="mark">↗</span>TechBridge</a><nav class="main-nav"><a href="#welcomeHeading">Introduction</a><a href="#how-it-works">How it works</a><a href="login.html">Log in</a></nav></header>
 <section class="motion-intro film-hero" aria-labelledby="welcomeHeading">
@@ -341,9 +347,9 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
  const fullText=scenes.map(x=>x.voice).join(" ");
  const offsets=[];let total=0;scenes.forEach(x=>{offsets.push(total);total+=x.voice.length+1;});
  function setButton(mode){
-  if(mode==='pause'){play.innerHTML='<span class="play-glyph">Ⅱ</span><span class="play-label">Pause story</span>';play.setAttribute('aria-label','Pause story');}
-  else if(mode==='resume'){play.innerHTML='<span class="play-glyph">▶</span><span class="play-label">Resume story</span>';play.setAttribute('aria-label','Resume story');}
-  else{play.innerHTML='<span class="play-glyph">▶</span><span class="play-label">Play story</span>';play.setAttribute('aria-label','Play story with voice');}
+  if(mode==='pause'){play.innerHTML='';play.classList.add('is-playing');play.setAttribute('aria-label','Pause story');play.setAttribute('title','Pause story');}
+  else if(mode==='resume'){play.innerHTML='<span class="play-glyph">▶</span><span class="play-label">Resume story</span>';play.classList.remove('is-playing');play.setAttribute('aria-label','Resume story');}
+  else{play.innerHTML='<span class="play-glyph">▶</span><span class="play-label">Play story</span>';play.classList.remove('is-playing');play.setAttribute('aria-label','Play story with voice');}
  }
  function clearTimers(){fallbackTimers.forEach(clearTimeout);fallbackTimers=[];}
  function syncVideo(){
