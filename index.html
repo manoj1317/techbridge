@@ -120,22 +120,58 @@ body{background:#f7f8fb;color:#172033}
 .public-gate-actions a:first-child{background:#fff;color:#172b4b}
 .public-gate-actions a:last-child{border:1px solid #ffffff55;color:#fff}
 @media(max-width:800px){.public-hero{grid-template-columns:1fr;padding-top:35px;gap:25px}.public-visual{min-height:300px}.public-steps{grid-template-columns:1fr}.public-gate{margin:0 16px 45px;display:block}.public-gate-actions{margin-top:18px;flex-wrap:wrap}.public-hero h1{letter-spacing:-1.6px}}
+</style><style id="friendly-techbridge-redesign">
+:root{--friendly-ink:#26334a;--friendly-muted:#68758b;--friendly-blue:#5278e8;--friendly-lilac:#eeeaff;--friendly-mint:#e4f7ee;--friendly-peach:#fff0e4}
+body{background:#fffdf9;color:var(--friendly-ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+.nav{height:82px}.brand{font-size:23px;letter-spacing:-.7px}.mark{background:#5278e8;border-radius:14px;box-shadow:0 6px 14px #5278e82b}
+.main-nav{gap:22px}.main-nav a{font-size:14px;color:#59667b}.country-clock select,.local-time{border-radius:14px;border-color:#e8e6e0}
+.motion-intro{padding:50px 0 62px;background:linear-gradient(135deg,#f5f3ff 0%,#f1f9ff 53%,#fff7ed 100%);overflow:hidden}
+.motion-wrap{max-width:1160px;padding:0 24px;margin:auto;display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center;min-height:420px}
+.motion-copy h2{font-size:clamp(34px,4vw,52px);line-height:1.08;letter-spacing:-1.9px;margin:16px 0}
+.motion-copy>p{color:#68758b;font-size:17px;line-height:1.75;max-width:500px}
+.friendly-kicker,.public-eyebrow{color:#5575d8;font-size:11px;font-weight:900;letter-spacing:1.7px}
+.motion-actions{display:flex;gap:10px;margin:23px 0 18px;flex-wrap:wrap}
+.motion-actions button{border:0;border-radius:13px;padding:13px 18px;background:#5278e8;color:white;font-weight:800;cursor:pointer;box-shadow:0 8px 18px #5278e82b}
+.motion-actions .motion-quiet{background:#fff;color:#59667b;border:1px solid #e4e7ef;box-shadow:none}
+.motion-progress{height:6px;background:#e4e7f1;border-radius:99px;overflow:hidden;max-width:410px}
+.motion-progress span{display:block;width:0;height:100%;background:#7b8fea;border-radius:99px;transition:width .5s}
+.motion-caption{font-size:13px!important;color:#7a8496!important;margin-top:10px}
+.motion-stage{height:390px;max-width:570px;width:100%;justify-self:end;position:relative;overflow:hidden;border-radius:34px;background:linear-gradient(145deg,#dfe9ff,#f0eaff 55%,#fff0e4);box-shadow:0 25px 60px #6678a522;isolation:isolate}
+.orbit{position:absolute;border:1px solid #fff9;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);animation:orbitFloat 9s ease-in-out infinite}
+.orbit-one{width:340px;height:250px}.orbit-two{width:450px;height:330px;animation-delay:-3s}
+.sun-disc{position:absolute;width:220px;height:220px;border-radius:50%;background:linear-gradient(135deg,#fff4bf,#ffcda9);left:50%;top:49%;transform:translate(-50%,-50%);opacity:.9}
+.motion-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:150px;height:135px;border-radius:28px;background:#fff;box-shadow:0 16px 35px #50669a24;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;z-index:3}
+.motion-center span{display:grid;place-items:center;width:37px;height:37px;background:#5579e9;color:white;border-radius:12px;font-size:23px}
+.motion-center strong{font-size:17px}.motion-center small{font-size:10px;color:#77839a}
+.motion-person{position:absolute;z-index:4;display:flex;align-items:center;gap:8px;background:#fff;padding:11px 14px;border-radius:16px;box-shadow:0 12px 25px #44577b20;font-size:12px;animation:bob 4s ease-in-out infinite}
+.motion-person span{font-size:24px}.person-one{left:7%;top:19%}.person-two{right:6%;top:23%;animation-delay:-1.4s}.person-three{left:22%;bottom:12%;animation-delay:-2.2s}
+.floating-note{position:absolute;z-index:4;background:#ffffffd9;padding:9px 12px;border-radius:12px;font-size:11px;font-weight:750;color:#52627c;box-shadow:0 8px 20px #44577b16;animation:bob 5s ease-in-out infinite}.note-one{right:7%;bottom:17%}.note-two{left:8%;bottom:4%;animation-delay:-2s}
+.motion-stage[data-scene="2"] .person-one,.motion-stage[data-scene="3"] .person-two,.motion-stage[data-scene="4"] .person-three{transform:scale(1.12);box-shadow:0 0 0 5px #fff8,0 12px 25px #44577b20}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -10px}}@keyframes orbitFloat{0%,100%{transform:translate(-50%,-50%) rotate(-5deg)}50%{transform:translate(-50%,-50%) rotate(5deg)}}
+.public-hero{padding:70px 24px 82px;gap:65px}.public-hero h1{font-size:clamp(42px,5.3vw,64px);letter-spacing:-2.4px;color:#29364d}.public-hero>div:first-child>p{color:#6b778c}.public-visual{border-radius:30px;background:linear-gradient(145deg,#5278e8,#7f77d8 65%,#e4a8a0);box-shadow:0 25px 60px #6a79b52b}
+.public-pill{border-radius:15px;background:#ffffff20;border-color:#ffffff40}.public-primary{background:#5278e8;border-radius:14px;box-shadow:0 9px 20px #5278e82b}.public-secondary{border-radius:14px;border-color:#e2e6ef}
+.public-section{padding:55px 24px 75px}.public-section h2{font-size:34px;color:#29364d}.public-step{border-radius:20px;padding:25px;background:white;border-color:#ebeaf0;box-shadow:0 9px 25px #25334a08}.public-step span{color:#5575d8}.public-step p{color:#6d788c}
+.public-gate{border-radius:25px;background:linear-gradient(110deg,#314a7b,#655d9c);padding:32px;margin-bottom:65px}.public-gate-actions a{border-radius:12px}
+.footer{padding:25px;text-align:center;color:#8992a2;font-size:13px}
+@media(max-width:800px){.motion-wrap{grid-template-columns:1fr;gap:28px}.motion-stage{justify-self:center;height:330px}.motion-copy h2{font-size:38px}.public-hero{grid-template-columns:1fr;padding-top:48px;gap:32px}.public-visual{min-height:340px}}
+@media(prefers-reduced-motion:reduce){.orbit,.motion-person,.floating-note{animation:none!important}.motion-progress span{transition:none}}
 </style></head>\n<body>
 <header class="wrap nav"><a class="brand" href="#"><span class="mark">↗</span>TechBridge</a><nav class="main-nav"><a href="#welcomeHeading">Introduction</a><a href="#how-it-works">How it works</a><a href="login.html">Log in</a></nav><div class="country-clock"><select id="countryTimeZone" aria-label="Choose your country and time zone"><option value="Asia/Kolkata">🇮🇳 India</option><option value="Europe/Vienna">🇦🇹 Austria</option><option value="Europe/London">🇬🇧 United Kingdom</option><option value="Europe/Berlin">🇩🇪 Germany</option><option value="Europe/Paris">🇫🇷 France</option><option value="America/New_York">🇺🇸 United States — Eastern</option><option value="America/Chicago">🇺🇸 United States — Central</option><option value="America/Denver">🇺🇸 United States — Mountain</option><option value="America/Los_Angeles">🇺🇸 United States — Pacific</option><option value="America/Toronto">🇨🇦 Canada — Eastern</option><option value="America/Vancouver">🇨🇦 Canada — Pacific</option><option value="Asia/Dubai">🇦🇪 United Arab Emirates</option><option value="Asia/Singapore">🇸🇬 Singapore</option><option value="Asia/Kuala_Lumpur">🇲🇾 Malaysia</option><option value="Asia/Tokyo">🇯🇵 Japan</option><option value="Australia/Sydney">🇦🇺 Australia — Sydney</option><option value="Pacific/Auckland">🇳🇿 New Zealand</option><option value="Africa/Johannesburg">🇿🇦 South Africa</option></select><div class="local-time" aria-live="off"><small id="timeZoneLabel">Local time · India</small><span id="countryLocalTime">--:--:--</span></div></div></header>
-<section class="welcome-video" aria-labelledby="welcomeHeading">
- <div class="wrap">
-  <div style="text-align:center;margin-bottom:18px"><span class="tag">A message from TechBridge</span><h2 id="welcomeHeading" style="font-size:clamp(25px,3vw,34px);margin:12px 0 5px">Welcome to TechBridge</h2><p class="sub" style="margin:0">Discover your direction. Keep learning. Build your future.</p></div>
-  <div class="video-shell">
-   <div class="video-screen" id="welcomeScreen" aria-live="polite">
-    <div class="video-brand"><span>↗</span>TechBridge</div>
-    <div class="video-scene" id="welcomeScene"><div class="video-kicker">Your journey starts here</div><h2>Every great future begins with a direction.</h2><p>Welcome to TechBridge — guidance for every stage of your journey.</p></div>
-   </div>
-   <div class="video-controls">
-    <button class="video-play" id="welcomePlay" type="button">▶ Play welcome</button>
-    <div class="video-meta"><strong id="welcomeStatus">A friendly hello from the TechBridge team</strong><small id="welcomeStep">Scene 1 of 5 · Warm English narration</small><div class="video-progress"><span id="welcomeProgress"></span></div></div>
-   </div>
+<section class="motion-intro" aria-labelledby="welcomeHeading">
+ <div class="motion-wrap">
+  <div class="motion-copy"><span class="friendly-kicker">A LITTLE INTRODUCTION</span><h2 id="welcomeHeading">A place to figure out your next step.</h2><p>Whether you're choosing a path, growing at work, sharing experience or hiring talent, there's a place for you here.</p>
+   <div class="motion-actions"><button id="motionPlay" type="button">▶ Play the introduction</button><button id="motionPause" type="button" class="motion-quiet">Pause</button></div>
+   <div class="motion-progress"><span id="motionProgress"></span></div><p class="motion-caption" id="motionCaption" aria-live="polite">Meet the people and possibilities that make TechBridge.</p>
   </div>
-  <p class="video-caption">Press Play welcome to hear the narration. The voice is generated by your browser; availability and voice quality depend on the device and browser.</p>
+  <div class="motion-stage" id="motionStage" aria-label="Animated illustration of people learning, advising and working together">
+   <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+   <div class="sun-disc"></div>
+   <div class="motion-person person-one"><span>🎓</span><b>Learner</b></div>
+   <div class="motion-person person-two"><span>🧑‍💻</span><b>Adviser</b></div>
+   <div class="motion-person person-three"><span>💼</span><b>Employer</b></div>
+   <div class="motion-center"><span>↗</span><strong>TechBridge</strong><small>Find your next step</small></div>
+   <div class="floating-note note-one">Learn something new ✨</div><div class="floating-note note-two">Real people. Real guidance.</div>
+  </div>
  </div>
 </section>
 <main>
@@ -158,25 +194,20 @@ body{background:#f7f8fb;color:#172033}
 <section class="public-gate"><div><h2 style="margin:0;font-size:25px">Ready to take the next step?</h2><p>Join the TechBridge community or return to your account.</p></div><div class="public-gate-actions"><a href="signup.html">Sign up</a><a href="login.html">Log in</a></div></section>
 </main>
 <footer class="footer">© 2026 TechBridge · Guidance for every stage. Opportunities for every ambition.</footer>
-<script>/* Animated welcome story with browser speech narration */
-(()=>{
- const scenes=[
-  {k:"YOUR JOURNEY STARTS HERE",h:"Every great future begins with a direction.",p:"Welcome to TechBridge — guidance for every stage of your journey.",v:"Hey everyone! A big, warm welcome to TechBridge. We're really happy you're here. Think of this as a friendly place to explore ideas, discover possibilities, and find a path that feels right for you."},
-  {k:"FOR YOUNG LEARNERS",h:"Not sure what comes after school?",p:"Explore options after Grade 10, Grade 12, diploma, or graduation.",v:"Are you finishing Grade 10 or Grade 12, studying for a diploma, or completing your degree? So many exciting paths are out there. We'll help you explore different fields, understand your options, and feel more confident about your next step. And you don't have to make these decisions alone. If you wish, invite your parent or guardian to join an online conversation with your career adviser, so you can discuss your questions and plans together."},
-  {k:"LEARN FROM EXPERIENCE",h:"Get guidance from people who know the work.",p:"Connect with experienced advisers across many industries and professions.",v:"You don't have to figure everything out alone. We're bringing together experienced advisers from different industries, so you can hear real stories, ask questions, and learn which skills can help you move forward."},
-  {k:"LEARNING NEVER STOPS",h:"Your next chapter can start at any age.",p:"For working professionals, career changers, and curious lifelong learners.",v:"And here's the best part: TechBridge isn't just for students! If you're already working and want to pick up a new skill, grow in your role, try a different industry, or even start a fresh career chapter, you're in the right place. It's never too late to learn something new."},
-  {k:"LET'S BUILD WHAT'S NEXT",h:"Connect experience with ambition.",p:"Explore. Ask questions. Keep learning. Take your next step with confidence.",v:"Our vision is simple: bring curious learners, experienced advisers, and exciting opportunities together. Take your time, explore what interests you, ask questions, and keep growing. Your journey is your own, and we're glad to be part of it. Welcome to TechBridge!"}
+<script>
+(()=>{const scenes=[
+ {caption:"Every journey starts with a question. Explore what could be next.",progress:20},
+ {caption:"Learners can discover career paths and make informed choices.",progress:40},
+ {caption:"Experienced advisers can share what they know and guide others.",progress:60},
+ {caption:"Employers can connect with people and share opportunities.",progress:80},
+ {caption:"One welcoming community. Many ways to move forward. Welcome to TechBridge!",progress:100}
  ];
- const sceneEl=document.getElementById('welcomeScene'),play=document.getElementById('welcomePlay'),status=document.getElementById('welcomeStatus'),step=document.getElementById('welcomeStep'),progress=document.getElementById('welcomeProgress');
- if(!sceneEl||!play)return;
- let index=0,playing=false,token=0;
- function show(i){index=i;const s=scenes[i];sceneEl.innerHTML='<div class="video-kicker">'+s.k+'</div><h2>'+s.h+'</h2><p>'+s.p+'</p>';step.textContent='Scene '+(i+1)+' of '+scenes.length+' · English narration';progress.style.width=((i+1)/scenes.length*100)+'%';}
- function stop(){playing=false;token++;if('speechSynthesis'in window)window.speechSynthesis.cancel();play.textContent='▶ Play welcome';status.textContent='Welcome presentation paused';}
- function waitForVoices(){return new Promise(resolve=>{const synth=window.speechSynthesis;let finished=false;const done=()=>{if(finished)return;finished=true;synth.onvoiceschanged=null;resolve(synth.getVoices());};const voices=synth.getVoices();if(voices.length){resolve(voices);return;}synth.onvoiceschanged=done;setTimeout(done,1500);});}
- async function start(){if(!('speechSynthesis'in window)||!('SpeechSynthesisUtterance'in window)){status.textContent='Spoken narration is not available in this browser. You can still read each animated scene.';return;}const synth=window.speechSynthesis;synth.cancel();const run=++token;playing=true;play.textContent='■ Stop';status.textContent='Preparing narration…';const available=await waitForVoices();if(!playing||run!==token)return;synth.resume();let i=0;function next(){if(!playing||run!==token)return;if(i>=scenes.length){playing=false;play.textContent='↻ Play welcome';status.textContent='Thanks for watching — welcome to TechBridge!';show(scenes.length-1);return;}show(i);const utterance=new SpeechSynthesisUtterance(scenes[i].v);utterance.lang='en-US';utterance.rate=0.96;utterance.pitch=1.04;utterance.volume=1;const preferred=available.find(v=>/samantha|aria|jenny|ava|zira|google us english|natural/i.test(v.name)&&/^en(-|_)/i.test(v.lang))||available.find(v=>/^en(-|_)/i.test(v.lang)&&v.localService===false)||available.find(v=>/^en(-|_)/i.test(v.lang));if(preferred)utterance.voice=preferred;utterance.onstart=()=>{if(playing&&run===token)status.textContent='Playing TechBridge welcome';};utterance.onend=()=>{if(playing&&run===token){i++;next();}};utterance.onerror=(event)=>{if(playing&&run===token){playing=false;play.textContent='↻ Try narration again';status.textContent='Chrome could not start speech ('+event.error+'). Check your system sound and text-to-speech settings.';}};synth.speak(utterance);synth.resume();}next();}
- play.addEventListener('click',()=>{if(playing)stop();else{show(0);start();}});
- show(0);
+ const stage=document.getElementById('motionStage'),caption=document.getElementById('motionCaption'),bar=document.getElementById('motionProgress'),play=document.getElementById('motionPlay'),pause=document.getElementById('motionPause');
+ if(!stage||!play)return;let timer=null,index=0;
+ function show(i){index=i;stage.dataset.scene=String(i+1);caption.textContent=scenes[i].caption;bar.style.width=scenes[i].progress+'%';}
+ function stop(){if(timer)clearInterval(timer);timer=null;play.textContent='↻ Replay introduction';}
+ function run(){stop();show(0);play.textContent='Playing introduction…';timer=setInterval(()=>{if(index>=scenes.length-1){stop();return;}show(index+1);},4200);}
+ play.addEventListener('click',run);pause.addEventListener('click',stop);show(0);
 })();
-
 </script>
 </body></html>
