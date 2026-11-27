@@ -271,6 +271,11 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
 .motion-intro.film-hero .film-center-control button .play-glyph{font-family:Arial,Helvetica,sans-serif!important;font-size:29px!important;font-weight:700!important;line-height:1!important}
 .motion-intro.film-hero .film-center-control button{position:relative!important}
 @media(max-width:760px){.motion-intro.film-hero{width:calc(100% - 20px)!important}}
+
+/* Ensure the story video fills the whole hero card at every breakpoint */
+.motion-intro.film-hero{display:block!important;width:calc(100% - 32px)!important;max-width:1440px!important}
+.motion-intro.film-hero>.motion-stage.real-film-stage{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;float:none!important;grid-column:auto!important}
+.motion-intro.film-hero .film-center-control button .play-glyph{font-family:Arial,sans-serif!important;font-weight:700!important;font-size:28px!important}
 </style></head>\n<body>
 <header class="wrap nav"><a class="brand" href="#"><span class="mark">↗</span>TechBridge</a><nav class="main-nav"><a href="#welcomeHeading">Introduction</a><a href="#how-it-works">How it works</a><a href="login.html">Log in</a></nav></header>
 <section class="motion-intro film-hero" aria-labelledby="welcomeHeading">
@@ -320,38 +325,97 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
 <script>
 (()=>{
  const scenes=[
-  {caption:"Before TechBridge: big questions, and no clear place to begin.",voice:"You know that moment... when everyone at home starts talking about the future? What should I study? Which career should I choose? And... am I making the right decision? It can feel confusing. Especially when you have so many options, and nobody is quite sure where to start."},
-  {caption:"A family shares its hopes, questions and worries.",voice:"Parents want the best for their children. Young people want to follow their dreams. But sometimes, all of us need a little help to see the way forward. Not another lecture. Just someone who listens... and really understands."},
-  {caption:"A conversation with an experienced adviser opens new possibilities.",voice:"Imagine having that conversation with someone who has been there. Through TechBridge, you can connect with an experienced adviser who listens to you, understands what you're good at, and helps you explore your options. No pressure. Just honest, practical guidance."},
-  {caption:"Explore career paths and build a practical next-step plan.",voice:"Together, you can look at different careers, the skills you'll need, and the courses or steps that can help you get there. Ask questions. Involve your family. Take it one step at a time."},
-  {caption:"After TechBridge: a clearer direction and confidence to take the next step.",voice:"You may not have every answer today. And that's okay. What matters is having a clearer direction... and knowing what to do next. That's what TechBridge is here for. Your journey. Your potential. A better way forward. Let's take the next step together."}
+  {caption:"Before TechBridge: big questions, and no clear place to begin.",title:"A conversation about the future",voice:"You know that moment... when everyone at home starts talking about the future? What should I study? Which career should I choose? And am I making the right decision? It can feel confusing, especially when there are so many options and nobody is quite sure where to start."},
+  {caption:"A family shares its hopes, questions and worries.",title:"A family exploring possibilities",voice:"Parents want the best for their children. Young people want to follow their dreams. But sometimes, all of us need a little help to see the way forward. Not another lecture. Just someone who listens... and really understands."},
+  {caption:"A conversation with an experienced adviser opens new possibilities.",title:"Guidance from someone who understands",voice:"Imagine having that conversation with someone who has been there. Through TechBridge, you can connect with an experienced adviser who listens, understands what you're good at, and helps you explore your options. No pressure. Just honest, practical guidance."},
+  {caption:"Explore career paths and build a practical next-step plan.",title:"Learning and building new skills",voice:"Together, you can explore different careers, the skills you'll need, and the courses or steps that can help you get there. Ask questions. Involve your family. Take it one step at a time."},
+  {caption:"After TechBridge: a clearer direction and confidence to take the next step.",title:"A confident next step",voice:"You may not have every answer today. And that's okay. What matters is having a clearer direction... and knowing what to do next. That's what TechBridge is here for. Your journey. Your potential. A better way forward. Let's take the next step together."}
  ];
  const stage=document.getElementById('motionStage'),caption=document.getElementById('motionCaption'),bar=document.getElementById('motionProgress'),play=document.getElementById('motionPlay');
- if(!stage||!play)return;
- let utterance=null,playing=false,paused=false,sceneIndex=0,fallbackTimers=[],boundarySeen=false,voiceWait=null;
- const supported=!!(window.speechSynthesis&&window.SpeechSynthesisUtterance);
+ if(!stage||!caption||!play)return;
+ const ids=['filmFamily','filmTutor','filmCall','filmStudent'];
+ const videos=ids.map(id=>document.getElementById(id)).filter(Boolean);
+ let utterance=null,playing=false,paused=false,sceneIndex=0,voiceWait=null,fallbackTimers=[],boundarySeen=false;
+ const speech=window.speechSynthesis;
+ const supported=!!(speech&&window.SpeechSynthesisUtterance);
  const fullText=scenes.map(x=>x.voice).join(" ");
- const starts=[];let offset=0;scenes.forEach(x=>{starts.push(offset);offset+=x.voice.length+1;});
- function videoElements(){return ['filmFamily','filmTutor','filmCall','filmStudent'].map(id=>document.getElementById(id)).filter(Boolean);}\n function syncVideoPlayback(){const vids=videoElements();const active=vids[[0,1,2,3,3][sceneIndex]];vids.forEach(v=>{if(v===active&&!paused&&playing){v.play().catch(()=>{});}else{v.pause();}});}\n function show(i){sceneIndex=i;stage.dataset.scene=String(i+1);caption.textContent=scenes[i].caption;if(bar)bar.style.width=((i+1)/scenes.length*100)+'%';const title=document.getElementById('filmSceneTitle');if(title)title.textContent=['A conversation about the future','A family exploring possibilities','Guidance from someone who understands','Learning and building new skills','A confident next step'][i];syncVideoPlayback();}
+ const offsets=[];let total=0;scenes.forEach(x=>{offsets.push(total);total+=x.voice.length+1;});
+ function setButton(mode){
+  if(mode==='pause'){play.innerHTML='<span class="play-glyph">Ⅱ</span><span class="play-label">Pause story</span>';play.setAttribute('aria-label','Pause story');}
+  else if(mode==='resume'){play.innerHTML='<span class="play-glyph">▶</span><span class="play-label">Resume story</span>';play.setAttribute('aria-label','Resume story');}
+  else{play.innerHTML='<span class="play-glyph">▶</span><span class="play-label">Play story</span>';play.setAttribute('aria-label','Play story with voice');}
+ }
  function clearTimers(){fallbackTimers.forEach(clearTimeout);fallbackTimers=[];}
- function finish(){clearTimers();if(voiceWait){clearTimeout(voiceWait);voiceWait=null;}playing=false;paused=false;utterance=null;videoElements().forEach(v=>v.pause());play.innerHTML='<span class="play-glyph">▶</span><span class="play-label">Play story</span>';play.setAttribute('aria-label','Play TechBridge story with voice');}
- function updateSceneFromChar(pos){let idx=0;for(let i=0;i<starts.length;i++){if(pos>=starts[i])idx=i;}if(idx!==sceneIndex)show(idx);}
- function scheduleFallback(){let elapsed=0;scenes.forEach((x,i)=>{const duration=(x.voice.split(/\s+/).length/2.35)*1000;if(i<scenes.length-1){elapsed+=duration;fallbackTimers.push(setTimeout(()=>{if(playing&&!paused&&!boundarySeen)show(i+1);},elapsed));}});}
- function chooseVoice(){const voices=window.speechSynthesis.getVoices();return voices.find(v=>/^en-IN$/i.test(v.lang)&&/neural|natural|premium|google/i.test(v.name))||voices.find(v=>/^en-IN$/i.test(v.lang))||voices.find(v=>/Indian English|India/i.test(v.name))||voices.find(v=>/^en-GB$/i.test(v.lang)&&/natural|neural|google/i.test(v.name))||voices.find(v=>/^en-GB$/i.test(v.lang))||voices.find(v=>/^en-US$/i.test(v.lang))||null;}
- function speak(){if(!playing)return;utterance=new SpeechSynthesisUtterance(fullText);utterance.lang='en-IN';utterance.rate=.91;utterance.pitch=.96;const selected=chooseVoice();if(selected)utterance.voice=selected;
- utterance.onboundary=e=>{boundarySeen=true;if(typeof e.charIndex==='number')updateSceneFromChar(e.charIndex);};
- utterance.onend=()=>{show(4);finish();};
- utterance.onerror=e=>{if(e.error!=='canceled'&&e.error!=='interrupted'){caption.textContent='Voice playback stopped. Please press play to try again.';}finish();};
- scheduleFallback();window.speechSynthesis.speak(utterance);
+ function syncVideo(){
+  videos.forEach((v,i)=>{
+   if(i===([0,1,2,3,3][sceneIndex])&&playing&&!paused){const p=v.play();if(p&&p.catch)p.catch(()=>{caption.textContent='Tap Play to start the story. If sound is unavailable, check your device settings.';});}
+   else v.pause();
+  });
  }
- function start(){if(!supported){caption.textContent='Voice playback is not supported in this browser. Please try a recent version of Chrome, Edge or Safari.';return;}
- window.speechSynthesis.cancel();clearTimers();show(0);boundarySeen=false;playing=true;paused=false;play.innerHTML='<span class="play-glyph">Ⅱ</span><span class="play-label">Pause story</span>';play.setAttribute('aria-label','Pause TechBridge story');
- const voices=window.speechSynthesis.getVoices();
- if(voices.length){speak();}else{voiceWait=setTimeout(()=>{voiceWait=null;speak();},350);}
+ function show(i){
+  sceneIndex=Math.max(0,Math.min(4,i));stage.dataset.scene=String(sceneIndex+1);
+  caption.textContent=scenes[sceneIndex].caption;
+  const title=document.getElementById('filmSceneTitle');if(title)title.textContent=scenes[sceneIndex].title;
+  if(bar)bar.style.width=((sceneIndex+1)/5*100)+'%';
+  syncVideo();
  }
- play.addEventListener('click',()=>{if(!supported){start();return;}if(!playing){start();return;}if(!paused){window.speechSynthesis.pause();paused=true;clearTimers();videoElements().forEach(v=>v.pause());play.innerHTML='<span class="play-glyph">▶</span><span class="play-label">Resume story</span>';play.setAttribute('aria-label','Resume TechBridge story');}else{window.speechSynthesis.resume();paused=false;syncVideoPlayback();play.innerHTML='<span class="play-glyph">Ⅱ</span><span class="play-label">Pause story</span>';play.setAttribute('aria-label','Pause TechBridge story');scheduleFallback();}});
- if(supported&&window.speechSynthesis.onvoiceschanged!==undefined)window.speechSynthesis.onvoiceschanged=()=>{};
- show(0);
+ function finish(){
+  clearTimers();if(voiceWait){clearTimeout(voiceWait);voiceWait=null;}
+  videos.forEach(v=>v.pause());playing=false;paused=false;utterance=null;setButton('play');
+ }
+ function chooseVoice(){
+  const vs=speech.getVoices();
+  return vs.find(v=>/^en-IN$/i.test(v.lang)&&/natural|neural|premium|google/i.test(v.name))
+   ||vs.find(v=>/^en-IN$/i.test(v.lang))
+   ||vs.find(v=>/Indian English|India/i.test(v.name))
+   ||vs.find(v=>/^en-GB$/i.test(v.lang))
+   ||vs.find(v=>/^en-US$/i.test(v.lang))||null;
+ }
+ function updateScene(pos){
+  let idx=0;for(let i=0;i<offsets.length;i++)if(pos>=offsets[i])idx=i;
+  if(idx!==sceneIndex)show(idx);
+ }
+ function scheduleFallback(){
+  clearTimers();let elapsed=0;
+  scenes.forEach((x,i)=>{const duration=(x.voice.split(/\s+/).length/2.25)*1000;elapsed+=duration;
+   if(i<4)fallbackTimers.push(setTimeout(()=>{if(playing&&!paused&&!boundarySeen&&sceneIndex<=i)show(i+1);},elapsed));
+  });
+ }
+ function speak(){
+  if(!playing||paused)return;
+  utterance=new SpeechSynthesisUtterance(fullText);
+  utterance.lang='en-IN';utterance.rate=.92;utterance.pitch=1.0;
+  const voice=chooseVoice();if(voice)utterance.voice=voice;
+  utterance.onstart=()=>{syncVideo();};
+  utterance.onboundary=e=>{boundarySeen=true;if(typeof e.charIndex==='number')updateScene(e.charIndex);};
+  utterance.onend=()=>{show(4);finish();};
+  utterance.onerror=e=>{if(e.error!=='canceled'&&e.error!=='interrupted')caption.textContent='Voice could not start in this browser. Please try Chrome or Edge and check sound settings.';finish();};
+  scheduleFallback();speech.speak(utterance);
+ }
+ function start(){
+  if(!supported){caption.textContent='Voice playback is not supported in this browser. Please try Chrome or Edge.';return;}
+  speech.cancel();clearTimers();if(voiceWait){clearTimeout(voiceWait);voiceWait=null;}
+  playing=true;paused=false;boundarySeen=false;show(0);setButton('pause');
+  const voices=speech.getVoices();
+  if(voices.length)speak();
+  else{
+   voiceWait=setTimeout(()=>{voiceWait=null;speak();},900);
+   if(speech.onvoiceschanged!==undefined){
+    const old=speech.onvoiceschanged;
+    speech.onvoiceschanged=()=>{speech.onvoiceschanged=old;if(voiceWait){clearTimeout(voiceWait);voiceWait=null;speak();}};
+   }
+  }
+ }
+ play.addEventListener('click',()=>{
+  if(!playing){start();return;}
+  if(!paused){
+   paused=true;clearTimers();speech.pause();videos.forEach(v=>v.pause());setButton('resume');
+  }else{
+   paused=false;speech.resume();syncVideo();setButton('pause');scheduleFallback();
+  }
+ });
+ videos.forEach(v=>{v.removeAttribute('autoplay');v.muted=true;v.pause();});
+ show(0);setButton('play');
 })();
 </script>
 </body></html>
