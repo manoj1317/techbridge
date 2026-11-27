@@ -280,32 +280,38 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
 </main>
 <footer class="footer">© 2026 TechBridge · Guidance for every stage. Opportunities for every ambition.</footer>
 <script>
-(()=>{const scenes=[
- {caption:"Before TechBridge: a young person has big questions about the future.",voice:"Every family has that conversation. What should I study? Which career is right for me? What kind of future can I build? There are so many choices, and it is not always easy to know where to begin."},
- {caption:"The family talks, listens and realises they could use some guidance.",voice:"At home, the family shares their hopes and worries. They want to support their child, but they also want advice from someone who understands today's careers and the skills employers are looking for."},
- {caption:"With TechBridge, they connect with an experienced adviser.",voice:"That is where TechBridge comes in. They connect with an experienced career adviser. The adviser listens first, understands the young person's interests, and explains the options in simple, practical language."},
- {caption:"Together, they explore choices, skills and a step-by-step roadmap.",voice:"Now the family can explore different career paths, the skills needed, courses to consider, and the steps to take next. They can ask questions and be part of the conversation."},
- {caption:"After TechBridge: the family has a clearer plan and renewed confidence.",voice:"The future may still hold new questions, but the family is no longer guessing. They have a clearer direction, a practical plan, and guidance for the journey ahead. TechBridge. Your next step starts with a conversation."}
+(()=>{
+ const scenes=[
+  {caption:"Before TechBridge: big questions, and no clear place to begin.",voice:"You know that moment... when everyone at home starts talking about the future? What should I study? Which career should I choose? And... am I making the right decision? It can feel confusing. Especially when you have so many options, and nobody is quite sure where to start."},
+  {caption:"A family shares its hopes, questions and worries.",voice:"Parents want the best for their children. Young people want to follow their dreams. But sometimes, all of us need a little help to see the way forward. Not another lecture. Just someone who listens... and really understands."},
+  {caption:"A conversation with an experienced adviser opens new possibilities.",voice:"Imagine having that conversation with someone who has been there. Through TechBridge, you can connect with an experienced adviser who listens to you, understands what you're good at, and helps you explore your options. No pressure. Just honest, practical guidance."},
+  {caption:"Explore career paths and build a practical next-step plan.",voice:"Together, you can look at different careers, the skills you'll need, and the courses or steps that can help you get there. Ask questions. Involve your family. Take it one step at a time."},
+  {caption:"After TechBridge: a clearer direction and confidence to take the next step.",voice:"You may not have every answer today. And that's okay. What matters is having a clearer direction... and knowing what to do next. That's what TechBridge is here for. Your journey. Your potential. A better way forward. Let's take the next step together."}
  ];
  const stage=document.getElementById('motionStage'),caption=document.getElementById('motionCaption'),bar=document.getElementById('motionProgress'),play=document.getElementById('motionPlay');
- if(!stage||!play)return;let utterance=null,playing=false,paused=false,sceneIndex=0,fallbackTimers=[],boundarySeen=false;
+ if(!stage||!play)return;
+ let utterance=null,playing=false,paused=false,sceneIndex=0,fallbackTimers=[],boundarySeen=false,voiceWait=null;
  const supported=!!(window.speechSynthesis&&window.SpeechSynthesisUtterance);
  const fullText=scenes.map(x=>x.voice).join(" ");
  const starts=[];let offset=0;scenes.forEach(x=>{starts.push(offset);offset+=x.voice.length+1;});
  function show(i){sceneIndex=i;stage.dataset.scene=String(i+1);caption.textContent=scenes[i].caption;bar.style.width=((i+1)/scenes.length*100)+'%';}
  function clearTimers(){fallbackTimers.forEach(clearTimeout);fallbackTimers=[];}
- function finish(){clearTimers();playing=false;paused=false;utterance=null;play.textContent='↻ Play story with voice';}
+ function finish(){clearTimers();if(voiceWait){clearTimeout(voiceWait);voiceWait=null;}playing=false;paused=false;utterance=null;play.textContent='↻ Play story with voice';}
  function updateSceneFromChar(pos){let idx=0;for(let i=0;i<starts.length;i++){if(pos>=starts[i])idx=i;}if(idx!==sceneIndex)show(idx);}
- function scheduleFallback(){let elapsed=0;scenes.forEach((x,i)=>{const duration=(x.voice.split(/\s+/).length/2.05)*1000;elapsed+=duration;if(i<scenes.length-1){fallbackTimers.push(setTimeout(()=>{if(playing&&!boundarySeen)show(i+1);},elapsed));}});}
- function chooseVoice(){const voices=window.speechSynthesis.getVoices();return voices.find(v=>/^en-IN$/i.test(v.lang))||voices.find(v=>/Indian English|India/i.test(v.name))||voices.find(v=>/^en-GB$/i.test(v.lang))||voices.find(v=>/^en-US$/i.test(v.lang))||null;}
- function start(){if(!supported){caption.textContent='Voice playback is not supported in this browser. Please try a recent version of Chrome, Edge or Safari.';return;}
- window.speechSynthesis.cancel();clearTimers();show(0);boundarySeen=false;utterance=new SpeechSynthesisUtterance(fullText);utterance.lang='en-IN';utterance.rate=.88;utterance.pitch=1.02;const selected=chooseVoice();if(selected)utterance.voice=selected;
+ function scheduleFallback(){let elapsed=0;scenes.forEach((x,i)=>{const duration=(x.voice.split(/\s+/).length/2.35)*1000;if(i<scenes.length-1){elapsed+=duration;fallbackTimers.push(setTimeout(()=>{if(playing&&!paused&&!boundarySeen)show(i+1);},elapsed));}});}
+ function chooseVoice(){const voices=window.speechSynthesis.getVoices();return voices.find(v=>/^en-IN$/i.test(v.lang)&&/neural|natural|premium/i.test(v.name))||voices.find(v=>/^en-IN$/i.test(v.lang))||voices.find(v=>/Indian English|India/i.test(v.name))||voices.find(v=>/^en-GB$/i.test(v.lang))||voices.find(v=>/^en-US$/i.test(v.lang))||null;}
+ function speak(){if(!playing)return;utterance=new SpeechSynthesisUtterance(fullText);utterance.lang='en-IN';utterance.rate=.96;utterance.pitch=1.0;const selected=chooseVoice();if(selected)utterance.voice=selected;
  utterance.onboundary=e=>{boundarySeen=true;if(typeof e.charIndex==='number')updateSceneFromChar(e.charIndex);};
  utterance.onend=()=>{show(4);finish();};
  utterance.onerror=e=>{if(e.error!=='canceled'&&e.error!=='interrupted'){caption.textContent='Voice playback stopped. Please press play to try again.';}finish();};
- playing=true;paused=false;play.textContent='Ⅱ Pause story';scheduleFallback();window.speechSynthesis.speak(utterance);
+ scheduleFallback();window.speechSynthesis.speak(utterance);
  }
- play.addEventListener('click',()=>{if(!supported){start();return;}if(!playing){start();return;}if(!paused){window.speechSynthesis.pause();paused=true;play.textContent='▶ Resume story';}else{window.speechSynthesis.resume();paused=false;play.textContent='Ⅱ Pause story';}});
+ function start(){if(!supported){caption.textContent='Voice playback is not supported in this browser. Please try a recent version of Chrome, Edge or Safari.';return;}
+ window.speechSynthesis.cancel();clearTimers();show(0);boundarySeen=false;playing=true;paused=false;play.textContent='Ⅱ Pause story';
+ const voices=window.speechSynthesis.getVoices();
+ if(voices.length){speak();}else{voiceWait=setTimeout(()=>{voiceWait=null;speak();},350);}
+ }
+ play.addEventListener('click',()=>{if(!supported){start();return;}if(!playing){start();return;}if(!paused){window.speechSynthesis.pause();paused=true;clearTimers();play.textContent='▶ Resume story';}else{window.speechSynthesis.resume();paused=false;play.textContent='Ⅱ Pause story';scheduleFallback();}});
  if(supported&&window.speechSynthesis.onvoiceschanged!==undefined)window.speechSynthesis.onvoiceschanged=()=>{};
  show(0);
 })();
