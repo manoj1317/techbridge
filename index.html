@@ -212,6 +212,22 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
 .family-scene[data-scene="3"] .bubble-two,.family-scene[data-scene="4"] .bubble-three{opacity:1}
 @media(max-width:520px){.story-photo{width:44%;border-width:2px}.photo-before{bottom:13%}.photo-after{bottom:13%}}
 @media(prefers-reduced-motion:reduce){.story-photo{transition:none}}
+
+/* Real-life film treatment for the TechBridge introduction */
+.motion-intro{background:linear-gradient(135deg,#101a2d,#182c3c 58%,#263044)!important;color:#f8f5ef!important}
+.motion-copy h2{color:#fff!important}.motion-copy>p{color:#d5deeb!important}
+.motion-stage.real-film-stage{position:relative;min-height:clamp(340px,42vw,560px);height:100%;overflow:hidden;border-radius:26px;background:#121b2c;box-shadow:0 28px 80px #050a16a8;border:1px solid #ffffff25}
+.real-film-stage .film-clip{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.1s ease;filter:saturate(.88) contrast(1.04)}
+.real-film-stage[data-scene="1"] .film-family,.real-film-stage[data-scene="2"] .film-family{opacity:1}
+.real-film-stage[data-scene="3"] .film-student,.real-film-stage[data-scene="4"] .film-student,.real-film-stage[data-scene="5"] .film-student{opacity:1}
+.real-film-stage .film-shade{position:absolute;inset:0;background:linear-gradient(180deg,#08101a45 0%,transparent 35%,#07101dcc 100%),linear-gradient(90deg,#07101a30,transparent 70%);pointer-events:none}
+.film-topline{position:absolute;top:20px;left:22px;color:#fff;font-size:10px;font-weight:850;letter-spacing:2px;text-shadow:0 2px 14px #000}
+.film-live{display:inline-block;width:7px;height:7px;border-radius:50%;background:#8ee0c5;margin-right:8px;box-shadow:0 0 12px #8ee0c5}
+.film-bottom{position:absolute;left:24px;right:24px;bottom:24px;display:flex;flex-direction:column;gap:7px;color:#fff;text-shadow:0 2px 18px #000}
+.film-bottom span{font-size:clamp(20px,2.4vw,30px);font-weight:750;letter-spacing:-.7px}
+.film-bottom small{font-size:10px;letter-spacing:2px;color:#d8e2ee;font-weight:800}
+@media(max-width:760px){.motion-stage.real-film-stage{min-height:300px}.film-topline{top:15px;left:16px}.film-bottom{left:17px;right:17px;bottom:17px}}
+@media(prefers-reduced-motion:reduce){.real-film-stage .film-clip{transition:none}}
 </style></head>\n<body>
 <header class="wrap nav"><a class="brand" href="#"><span class="mark">↗</span>TechBridge</a><nav class="main-nav"><a href="#welcomeHeading">Introduction</a><a href="#how-it-works">How it works</a><a href="login.html">Log in</a></nav></header>
 <section class="motion-intro" aria-labelledby="welcomeHeading">
@@ -225,37 +241,16 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
    <div class="motion-progress"><span id="motionProgress"></span></div>
    <p class="motion-caption" id="motionCaption" aria-live="polite">One evening, a family sits together to talk about the future…</p>
   </div>
-  <div class="motion-stage family-scene" id="motionStage" data-scene="1" role="img" aria-label="Animated illustration of a young person talking with family around a table, with a career adviser joining on a laptop">
-   <div class="scene-window"><span></span><span></span><span></span></div><div class="scene-lamp"></div><div class="scene-glow"></div>
-   <div class="scene-bubble bubble-one">What should I do after school?</div>
-   <div class="scene-bubble bubble-two">Let's explore your options together.</div>
-   <div class="scene-bubble bubble-three">You don't have to decide alone.</div>
-   <svg class="family-art" viewBox="0 0 680 430" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <defs><linearGradient id="roomWall" x2="0" y2="1"><stop stop-color="#293958"/><stop offset="1" stop-color="#17243b"/></linearGradient><linearGradient id="tableWood" x2="0" y2="1"><stop stop-color="#c58c68"/><stop offset="1" stop-color="#87583f"/></linearGradient><linearGradient id="screenGlow" x2="1" y2="1"><stop stop-color="#8de2d1"/><stop offset="1" stop-color="#8498ee"/></linearGradient></defs>
-    <rect width="680" height="430" fill="url(#roomWall)"/>
-    <path d="M0 320 Q160 300 340 325 T680 310 V430 H0Z" fill="#243650"/>
-    <rect x="35" y="35" width="155" height="135" rx="14" fill="#314d68" stroke="#718ba5" stroke-width="5"/><path d="M112 38V168M38 102H187" stroke="#718ba5" stroke-width="5"/><circle cx="150" cy="65" r="22" fill="#ffd39a" opacity=".9"/>
-    <path d="M0 350Q100 280 200 350V430H0" fill="#6e6b8f" opacity=".45"/>
-    <rect x="475" y="60" width="150" height="12" rx="6" fill="#7f7890"/><path d="M490 72v30m120-30v30" stroke="#7f7890" stroke-width="5"/><path d="M520 60q-15-40 0-45q18 8 0 45" fill="#ffb88d"/><circle cx="520" cy="55" r="24" fill="#ffbd83" opacity=".18"/>
-    <!-- family sofa -->
-    <rect x="75" y="210" width="390" height="120" rx="34" fill="#52617e"/><rect x="92" y="230" width="355" height="86" rx="24" fill="#687795"/><path d="M100 310v38m340-38v38" stroke="#3a4661" stroke-width="14" stroke-linecap="round"/>
-    <!-- parent left -->
-    <g class="parent-character"><path d="M125 300q-5-95 62-95t62 95" fill="#d28d70"/><circle cx="187" cy="174" r="37" fill="#b97960"/><path d="M151 169q-7-40 33-42q44-2 43 38q-19-19-40-18q-19 18-36 22" fill="#282b3e"/><circle cx="174" cy="176" r="3" fill="#20243a"/><circle cx="200" cy="176" r="3" fill="#20243a"/><path d="M179 191q9 7 18 0" stroke="#713f42" stroke-width="3" fill="none" stroke-linecap="round"/></g>
-    <!-- other parent -->
-    <g class="other-parent"><path d="M310 300q0-95 62-95t62 95" fill="#638d9a"/><circle cx="371" cy="174" r="36" fill="#d69b78"/><path d="M336 164q3-47 43-43q39 2 30 43q-23-16-73 0" fill="#43354a"/><circle cx="358" cy="176" r="3" fill="#20243a"/><circle cx="383" cy="176" r="3" fill="#20243a"/><path d="M362 190q9 8 18 0" stroke="#8a4f4b" stroke-width="3" fill="none" stroke-linecap="round"/></g>
-    <!-- young person -->
-    <g class="young-character"><path d="M214 350q0-103 74-103t74 103" fill="#e2a35f"/><circle cx="288" cy="220" r="39" fill="#c98969"/><path d="M250 216q-7-45 36-48q47-2 41 46q-15-22-40-20q-15 16-37 22" fill="#24283b"/><circle cx="275" cy="221" r="3.5" fill="#20243a"/><circle cx="302" cy="221" r="3.5" fill="#20243a"/><path d="M279 239q10 8 20 0" stroke="#713f42" stroke-width="3" fill="none" stroke-linecap="round"/></g>
-    <!-- coffee table -->
-    <path d="M70 345h440l-22 22H92Z" fill="url(#tableWood)"/><path d="M112 365v48m345-48v48" stroke="#744a3d" stroke-width="12"/>
-    <rect x="232" y="312" width="110" height="8" rx="4" fill="#d9d5c9"/><rect x="244" y="290" width="86" height="24" rx="5" fill="#f4eee1"/><path d="M254 300h65" stroke="#9d8e7e" stroke-width="3"/>
-    <!-- laptop and adviser video call -->
-    <g class="laptop"><rect x="490" y="206" width="140" height="100" rx="9" fill="#111a2b" stroke="#a4b4c9" stroke-width="4"/><rect x="499" y="215" width="122" height="81" rx="5" fill="url(#screenGlow)"/><circle cx="560" cy="246" r="18" fill="#9c6857"/><path d="M533 286q2-30 27-30t27 30" fill="#4b547d"/><path d="M485 307h150l-13 12H500Z" fill="#bdc8d5"/></g>
-    <g class="scene-sparkles" fill="#ffd9a1"><path d="M590 135l5 13 13 5-13 5-5 13-5-13-13-5 13-5Z"/><path d="M465 110l4 10 10 4-10 4-4 10-4-10-10-4 10-4Z"/></g>
-   </svg>
-   <div class="story-photo photo-before"><svg viewBox="0 0 240 140" aria-hidden="true"><rect width="240" height="140" rx="12" fill="#e8c9a8"/><rect y="95" width="240" height="45" fill="#98745e"/><rect x="18" y="17" width="70" height="56" rx="5" fill="#8fa9b8"/><path d="M53 17v56M18 45h70" stroke="#e9e4d8" stroke-width="4"/><circle cx="143" cy="57" r="21" fill="#b97b60"/><path d="M119 55q0-30 27-31q24 2 23 28q-25-17-50 3" fill="#343447"/><path d="M105 116q0-48 38-48t38 48" fill="#d49b67"/><path d="M185 95h35" stroke="#f4e6d4" stroke-width="5"/><text x="16" y="128" fill="#fff" font-size="10" font-weight="700">BEFORE · SO MANY QUESTIONS</text></svg></div>
-   <div class="story-photo photo-guide"><svg viewBox="0 0 240 140" aria-hidden="true"><rect width="240" height="140" rx="12" fill="#b8d7d0"/><rect x="17" y="15" width="206" height="110" rx="10" fill="#26374c"/><rect x="25" y="23" width="190" height="94" rx="6" fill="#d6e9df"/><circle cx="120" cy="55" r="19" fill="#c78968"/><path d="M93 108q0-38 27-38t27 38" fill="#6277a6"/><path d="M44 38h32m-32 9h22" stroke="#5d8c82" stroke-width="4" stroke-linecap="round"/><circle cx="189" cy="38" r="8" fill="#f0b17e"/><text x="16" y="132" fill="#20364a" font-size="10" font-weight="700">DURING · A REAL ADVISER LISTENS</text></svg></div>
-   <div class="story-photo photo-after"><svg viewBox="0 0 240 140" aria-hidden="true"><rect width="240" height="140" rx="12" fill="#b9d6c8"/><rect y="101" width="240" height="39" fill="#7c9c88"/><circle cx="76" cy="54" r="20" fill="#b97b60"/><circle cx="132" cy="49" r="20" fill="#d49b78"/><circle cx="184" cy="56" r="20" fill="#c98969"/><path d="M50 107q0-37 26-37t26 37m5 0q0-43 25-43t26 43m5 0q0-37 26-37t26 37" fill="#536f83"/><path d="M105 18l7 8 17-17" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="132" fill="#fff" font-size="10" font-weight="700">AFTER · A PLAN AND CONFIDENCE</text></svg></div>
-   <div class="scene-floor"></div><div class="scene-label"><span class="scene-live-dot"></span> A conversation that opens possibilities</div>
+  <div class="motion-stage real-film-stage" id="motionStage" data-scene="1" role="group" aria-label="Real-life education and family video scenes">
+   <video class="film-clip film-family" id="filmFamily" autoplay muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/5183276/pictures/preview-0.jpg">
+    <source src="https://videos.pexels.com/video-files/5182809/5182809-hd_1920_1080_30fps.mp4" type="video/mp4">
+   </video>
+   <video class="film-clip film-student" id="filmStudent" autoplay muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/6985307/pictures/preview-0.jpg">
+    <source src="https://videos.pexels.com/video-files/6985245/6985245-uhd_3840_2160_25fps.mp4" type="video/mp4">
+   </video>
+   <div class="film-shade"></div>
+   <div class="film-topline"><span class="film-live"></span> REAL PEOPLE · REAL POSSIBILITIES</div>
+   <div class="film-bottom"><span id="filmSceneTitle">A conversation about the future</span><small>THE TECHBRIDGE STORY</small></div>
   </div>
  </div>
 </section>
@@ -294,7 +289,7 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
  const supported=!!(window.speechSynthesis&&window.SpeechSynthesisUtterance);
  const fullText=scenes.map(x=>x.voice).join(" ");
  const starts=[];let offset=0;scenes.forEach(x=>{starts.push(offset);offset+=x.voice.length+1;});
- function show(i){sceneIndex=i;stage.dataset.scene=String(i+1);caption.textContent=scenes[i].caption;bar.style.width=((i+1)/scenes.length*100)+'%';}
+ function show(i){sceneIndex=i;stage.dataset.scene=String(i+1);caption.textContent=scenes[i].caption;bar.style.width=((i+1)/scenes.length*100)+'%';const title=document.getElementById('filmSceneTitle');if(title)title.textContent=['A conversation about the future','A family exploring possibilities','Guidance from someone who understands','Learning and building new skills','A confident next step'][i];}
  function clearTimers(){fallbackTimers.forEach(clearTimeout);fallbackTimers=[];}
  function finish(){clearTimers();if(voiceWait){clearTimeout(voiceWait);voiceWait=null;}playing=false;paused=false;utterance=null;play.textContent='↻ Play story with voice';}
  function updateSceneFromChar(pos){let idx=0;for(let i=0;i<starts.length;i++){if(pos>=starts[i])idx=i;}if(idx!==sceneIndex)show(idx);}
