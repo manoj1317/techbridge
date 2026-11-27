@@ -282,19 +282,24 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
 .film-center-control button.is-playing .play-glyph,.film-center-control button.is-playing .play-label{display:none!important}
 .film-center-control button.is-playing:hover{opacity:.16!important;background:#ffffff22!important}
 .film-center-control button.is-playing:focus-visible{opacity:1!important;outline:3px solid #fff!important}
+
+/* New stock-footage sequence replaces all previous footage */
+.real-film-stage .film-a,.real-film-stage .film-b,.real-film-stage .film-c{opacity:0}
+.real-film-stage[data-scene="1"] .film-a,.real-film-stage[data-scene="2"] .film-a,.real-film-stage[data-scene="3"] .film-b,.real-film-stage[data-scene="4"] .film-c,.real-film-stage[data-scene="5"] .film-c{opacity:1}
 </style></head>\n<body>
 <header class="wrap nav"><a class="brand" href="#"><span class="mark">↗</span>TechBridge</a><nav class="main-nav"><a href="#welcomeHeading">Introduction</a><a href="#how-it-works">How it works</a><a href="login.html">Log in</a></nav></header>
 <section class="motion-intro film-hero" aria-labelledby="welcomeHeading">
  <div class="cinema-top"><span class="cinema-kicker">A TECHBRIDGE STORY</span><span class="cinema-duration">Real people · Real possibilities</span></div>
  <div class="film-hero-copy"><span class="friendly-kicker">A LITTLE GUIDANCE CAN CHANGE A LOT</span><h2 id="welcomeHeading">Every future begins with a conversation.</h2></div>
  <div class="motion-stage real-film-stage" id="motionStage" data-scene="1" role="group" aria-label="Cinematic video story about learners, families and career guidance">
-  <video class="film-clip film-family" id="filmFamily" autoplay muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/6250098/pictures/preview-0.jpg">
-   <source src="https://videos.pexels.com/video-files/6250098/6250098-hd_1920_1080_25fps.mp4" type="video/mp4">
+  <video class="film-clip film-a" id="filmA" muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/8198517/pictures/preview-0.jpg">
+   <source src="https://videos.pexels.com/video-files/8198517/8198517-hd_1920_1080_25fps.mp4" type="video/mp4">
   </video>
-
-
-  <video class="film-clip film-call" id="filmCall" autoplay muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/6985332/pictures/preview-0.jpg">
-   <source src="https://videos.pexels.com/video-files/6985332/6985332-hd_1920_1080_25fps.mp4" type="video/mp4">
+  <video class="film-clip film-b" id="filmB" muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/8419338/pictures/preview-0.jpg">
+   <source src="https://videos.pexels.com/video-files/8419338/8419338-hd_1920_1080_25fps.mp4" type="video/mp4">
+  </video>
+  <video class="film-clip film-c" id="filmC" muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/5200029/pictures/preview-0.jpg">
+   <source src="https://videos.pexels.com/video-files/5200029/5200029-hd_1920_1080_25fps.mp4" type="video/mp4">
   </video>
   <div class="film-shade"></div>
   <div class="film-topline"><span class="film-live"></span> THE TECHBRIDGE STORY</div>
@@ -335,7 +340,7 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
  ];
  const stage=document.getElementById('motionStage'),caption=document.getElementById('motionCaption'),bar=document.getElementById('motionProgress'),play=document.getElementById('motionPlay');
  if(!stage||!caption||!play)return;
- const ids=['filmFamily','filmCall'];
+ const ids=['filmA','filmB','filmC'];
  const videos=ids.map(id=>document.getElementById(id)).filter(Boolean);
  let utterance=null,playing=false,paused=false,sceneIndex=0,voiceWait=null,fallbackTimers=[],boundarySeen=false;
  const speech=window.speechSynthesis;
@@ -350,7 +355,7 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
  function clearTimers(){fallbackTimers.forEach(clearTimeout);fallbackTimers=[];}
  function syncVideo(){
   videos.forEach((v,i)=>{
-   if(i===([0,0,0,1,1][sceneIndex])&&playing&&!paused){const p=v.play();if(p&&p.catch)p.catch(()=>{caption.textContent='Tap Play to start the story. If sound is unavailable, check your device settings.';});}
+   if(i===([0,0,1,2,2][sceneIndex])&&playing&&!paused){const p=v.play();if(p&&p.catch)p.catch(()=>{caption.textContent='Tap Play to start the story. If sound is unavailable, check your device settings.';});}
    else v.pause();
   });
  }
