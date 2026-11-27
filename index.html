@@ -291,9 +291,7 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
   <video class="film-clip film-family" id="filmFamily" autoplay muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/6250098/pictures/preview-0.jpg">
    <source src="https://videos.pexels.com/video-files/6250098/6250098-hd_1920_1080_25fps.mp4" type="video/mp4">
   </video>
-  <video class="film-clip film-tutor" id="filmTutor" autoplay muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/5183315/pictures/preview-0.jpg">
-   <source src="https://videos.pexels.com/video-files/5183315/5183315-hd_1920_1080_30fps.mp4" type="video/mp4">
-  </video>
+
   <video class="film-clip film-student" id="filmStudent" autoplay muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/6985307/pictures/preview-0.jpg">
    <source src="https://videos.pexels.com/video-files/6985245/6985245-uhd_3840_2160_25fps.mp4" type="video/mp4">
   </video>
@@ -339,7 +337,7 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
  ];
  const stage=document.getElementById('motionStage'),caption=document.getElementById('motionCaption'),bar=document.getElementById('motionProgress'),play=document.getElementById('motionPlay');
  if(!stage||!caption||!play)return;
- const ids=['filmFamily','filmTutor','filmCall','filmStudent'];
+ const ids=['filmFamily','filmCall','filmStudent'];
  const videos=ids.map(id=>document.getElementById(id)).filter(Boolean);
  let utterance=null,playing=false,paused=false,sceneIndex=0,voiceWait=null,fallbackTimers=[],boundarySeen=false;
  const speech=window.speechSynthesis;
@@ -354,7 +352,7 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
  function clearTimers(){fallbackTimers.forEach(clearTimeout);fallbackTimers=[];}
  function syncVideo(){
   videos.forEach((v,i)=>{
-   if(i===([0,1,2,3,3][sceneIndex])&&playing&&!paused){const p=v.play();if(p&&p.catch)p.catch(()=>{caption.textContent='Tap Play to start the story. If sound is unavailable, check your device settings.';});}
+   if(i===([0,0,1,2,2][sceneIndex])&&playing&&!paused){const p=v.play();if(p&&p.catch)p.catch(()=>{caption.textContent='Tap Play to start the story. If sound is unavailable, check your device settings.';});}
    else v.pause();
   });
  }
