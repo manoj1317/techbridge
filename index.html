@@ -263,6 +263,14 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
 .film-hero .motion-stage.real-film-stage{width:100%!important;height:clamp(460px,65vw,760px)!important;min-height:460px!important;border-radius:20px}
 @media(min-width:1100px){.film-hero .motion-stage.real-film-stage{height:min(72vh,780px)!important}}
 @media(max-width:760px){.motion-intro.film-hero{width:calc(100% - 20px);margin:10px auto 28px;padding:14px 12px 12px!important}.film-hero .motion-stage.real-film-stage{height:clamp(380px,112vw,590px)!important;min-height:380px!important;border-radius:15px}}
+
+/* Hard override: make the film itself span the full panel */
+.motion-intro.film-hero{display:block!important;width:calc(100% - 32px)!important;max-width:none!important;margin-left:auto!important;margin-right:auto!important}
+.motion-intro.film-hero>.cinema-top{width:100%!important}
+.motion-intro.film-hero>.motion-stage.real-film-stage{display:block!important;float:none!important;position:relative!important;width:100%!important;max-width:none!important;min-width:0!important;margin:0!important;grid-column:1/-1!important;left:auto!important;right:auto!important;transform:none!important}
+.motion-intro.film-hero .film-center-control button .play-glyph{font-family:Arial,Helvetica,sans-serif!important;font-size:29px!important;font-weight:700!important;line-height:1!important}
+.motion-intro.film-hero .film-center-control button{position:relative!important}
+@media(max-width:760px){.motion-intro.film-hero{width:calc(100% - 20px)!important}}
 </style></head>\n<body>
 <header class="wrap nav"><a class="brand" href="#"><span class="mark">↗</span>TechBridge</a><nav class="main-nav"><a href="#welcomeHeading">Introduction</a><a href="#how-it-works">How it works</a><a href="login.html">Log in</a></nav></header>
 <section class="motion-intro film-hero" aria-labelledby="welcomeHeading">
@@ -324,9 +332,9 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
  const supported=!!(window.speechSynthesis&&window.SpeechSynthesisUtterance);
  const fullText=scenes.map(x=>x.voice).join(" ");
  const starts=[];let offset=0;scenes.forEach(x=>{starts.push(offset);offset+=x.voice.length+1;});
- function show(i){sceneIndex=i;stage.dataset.scene=String(i+1);caption.textContent=scenes[i].caption;if(bar)bar.style.width=((i+1)/scenes.length*100)+'%';const title=document.getElementById('filmSceneTitle');if(title)title.textContent=['A conversation about the future','A family exploring possibilities','Guidance from someone who understands','Learning and building new skills','A confident next step'][i];const vids=[document.getElementById('filmFamily'),document.getElementById('filmTutor'),document.getElementById('filmCall'),document.getElementById('filmStudent')];const active=vids[[0,1,2,3,3][i]];vids.forEach(v=>{if(!v)return;if(v===active){v.play().catch(()=>{});}else{v.pause();}});}
+ function videoElements(){return ['filmFamily','filmTutor','filmCall','filmStudent'].map(id=>document.getElementById(id)).filter(Boolean);}\n function syncVideoPlayback(){const vids=videoElements();const active=vids[[0,1,2,3,3][sceneIndex]];vids.forEach(v=>{if(v===active&&!paused&&playing){v.play().catch(()=>{});}else{v.pause();}});}\n function show(i){sceneIndex=i;stage.dataset.scene=String(i+1);caption.textContent=scenes[i].caption;if(bar)bar.style.width=((i+1)/scenes.length*100)+'%';const title=document.getElementById('filmSceneTitle');if(title)title.textContent=['A conversation about the future','A family exploring possibilities','Guidance from someone who understands','Learning and building new skills','A confident next step'][i];syncVideoPlayback();}
  function clearTimers(){fallbackTimers.forEach(clearTimeout);fallbackTimers=[];}
- function finish(){clearTimers();if(voiceWait){clearTimeout(voiceWait);voiceWait=null;}playing=false;paused=false;utterance=null;play.innerHTML='<span class="play-glyph">▶</span><span class="play-label">Play story</span>';play.setAttribute('aria-label','Play TechBridge story with voice');}
+ function finish(){clearTimers();if(voiceWait){clearTimeout(voiceWait);voiceWait=null;}playing=false;paused=false;utterance=null;videoElements().forEach(v=>v.pause());play.innerHTML='<span class="play-glyph">▶</span><span class="play-label">Play story</span>';play.setAttribute('aria-label','Play TechBridge story with voice');}
  function updateSceneFromChar(pos){let idx=0;for(let i=0;i<starts.length;i++){if(pos>=starts[i])idx=i;}if(idx!==sceneIndex)show(idx);}
  function scheduleFallback(){let elapsed=0;scenes.forEach((x,i)=>{const duration=(x.voice.split(/\s+/).length/2.35)*1000;if(i<scenes.length-1){elapsed+=duration;fallbackTimers.push(setTimeout(()=>{if(playing&&!paused&&!boundarySeen)show(i+1);},elapsed));}});}
  function chooseVoice(){const voices=window.speechSynthesis.getVoices();return voices.find(v=>/^en-IN$/i.test(v.lang)&&/neural|natural|premium|google/i.test(v.name))||voices.find(v=>/^en-IN$/i.test(v.lang))||voices.find(v=>/Indian English|India/i.test(v.name))||voices.find(v=>/^en-GB$/i.test(v.lang)&&/natural|neural|google/i.test(v.name))||voices.find(v=>/^en-GB$/i.test(v.lang))||voices.find(v=>/^en-US$/i.test(v.lang))||null;}
@@ -341,7 +349,7 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
  const voices=window.speechSynthesis.getVoices();
  if(voices.length){speak();}else{voiceWait=setTimeout(()=>{voiceWait=null;speak();},350);}
  }
- play.addEventListener('click',()=>{if(!supported){start();return;}if(!playing){start();return;}if(!paused){window.speechSynthesis.pause();paused=true;clearTimers();play.innerHTML='<span class="play-glyph">▶</span><span class="play-label">Resume story</span>';play.setAttribute('aria-label','Resume TechBridge story');}else{window.speechSynthesis.resume();paused=false;play.innerHTML='<span class="play-glyph">Ⅱ</span><span class="play-label">Pause story</span>';play.setAttribute('aria-label','Pause TechBridge story');scheduleFallback();}});
+ play.addEventListener('click',()=>{if(!supported){start();return;}if(!playing){start();return;}if(!paused){window.speechSynthesis.pause();paused=true;clearTimers();videoElements().forEach(v=>v.pause());play.innerHTML='<span class="play-glyph">▶</span><span class="play-label">Resume story</span>';play.setAttribute('aria-label','Resume TechBridge story');}else{window.speechSynthesis.resume();paused=false;syncVideoPlayback();play.innerHTML='<span class="play-glyph">Ⅱ</span><span class="play-label">Pause story</span>';play.setAttribute('aria-label','Pause TechBridge story');scheduleFallback();}});
  if(supported&&window.speechSynthesis.onvoiceschanged!==undefined)window.speechSynthesis.onvoiceschanged=()=>{};
  show(0);
 })();
