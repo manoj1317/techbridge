@@ -201,16 +201,27 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
 @media(max-width:850px){.motion-wrap{grid-template-columns:1fr;gap:22px}.family-scene{justify-self:center;min-height:0}.motion-intro{margin:12px 12px 34px}.cinema-top{padding:0 3px}.motion-copy h2{max-width:650px}}
 @media(max-width:520px){.family-scene{aspect-ratio:1/1;min-height:290px}.scene-bubble{font-size:10px;padding:7px 9px}.motion-actions button{font-size:12px;padding:11px 13px}.cinema-top{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.family-art *,.scene-sparkles{animation:none!important}.scene-bubble{transition:none}}
+
+/* Storyboard photo transitions and single-control narration */
+.motion-actions{margin:23px 0 18px}.motion-actions button{min-width:190px}
+.story-photo{position:absolute;z-index:7;width:42%;max-width:245px;aspect-ratio:240/140;border:4px solid #f5e8d7;border-radius:15px;overflow:hidden;box-shadow:0 16px 38px #080d1d88;opacity:0;transform:translateY(24px) rotate(-4deg) scale(.92);transition:opacity .8s ease,transform .9s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.story-photo svg{display:block;width:100%;height:100%}.photo-before{left:5%;bottom:7%}.photo-guide{right:5%;top:8%;transform:translateY(22px) rotate(4deg) scale(.92)}.photo-after{right:5%;bottom:7%;transform:translateY(22px) rotate(3deg) scale(.92)}
+.family-scene[data-scene="1"] .photo-before,.family-scene[data-scene="2"] .photo-before{opacity:1;transform:translateY(0) rotate(-4deg) scale(1)}
+.family-scene[data-scene="3"] .photo-guide,.family-scene[data-scene="4"] .photo-guide{opacity:1;transform:translateY(0) rotate(4deg) scale(1)}
+.family-scene[data-scene="5"] .photo-after{opacity:1;transform:translateY(0) rotate(3deg) scale(1)}
+.family-scene[data-scene="3"] .bubble-two,.family-scene[data-scene="4"] .bubble-three{opacity:1}
+@media(max-width:520px){.story-photo{width:44%;border-width:2px}.photo-before{bottom:13%}.photo-after{bottom:13%}}
+@media(prefers-reduced-motion:reduce){.story-photo{transition:none}}
 </style></head>\n<body>
 <header class="wrap nav"><a class="brand" href="#"><span class="mark">↗</span>TechBridge</a><nav class="main-nav"><a href="#welcomeHeading">Introduction</a><a href="#how-it-works">How it works</a><a href="login.html">Log in</a></nav><div class="country-clock"><select id="countryTimeZone" aria-label="Choose your country and time zone"><option value="Asia/Kolkata">🇮🇳 India</option><option value="Europe/Vienna">🇦🇹 Austria</option><option value="Europe/London">🇬🇧 United Kingdom</option><option value="Europe/Berlin">🇩🇪 Germany</option><option value="Europe/Paris">🇫🇷 France</option><option value="America/New_York">🇺🇸 United States — Eastern</option><option value="America/Chicago">🇺🇸 United States — Central</option><option value="America/Denver">🇺🇸 United States — Mountain</option><option value="America/Los_Angeles">🇺🇸 United States — Pacific</option><option value="America/Toronto">🇨🇦 Canada — Eastern</option><option value="America/Vancouver">🇨🇦 Canada — Pacific</option><option value="Asia/Dubai">🇦🇪 United Arab Emirates</option><option value="Asia/Singapore">🇸🇬 Singapore</option><option value="Asia/Kuala_Lumpur">🇲🇾 Malaysia</option><option value="Asia/Tokyo">🇯🇵 Japan</option><option value="Australia/Sydney">🇦🇺 Australia — Sydney</option><option value="Pacific/Auckland">🇳🇿 New Zealand</option><option value="Africa/Johannesburg">🇿🇦 South Africa</option></select><div class="local-time" aria-live="off"><small id="timeZoneLabel">Local time · India</small><span id="countryLocalTime">--:--:--</span></div></div></header>
 <section class="motion-intro" aria-labelledby="welcomeHeading">
- <div class="cinema-top"><span class="cinema-kicker">A TECHBRIDGE STORY</span><span class="cinema-duration">A short story · 40 seconds</span></div>
+ <div class="cinema-top"><span class="cinema-kicker">A TECHBRIDGE STORY</span><span class="cinema-duration">A short film · narrated in Indian English</span></div>
  <div class="motion-wrap">
   <div class="motion-copy">
    <span class="friendly-kicker">CAREERS ARE FAMILY CONVERSATIONS</span>
    <h2 id="welcomeHeading">Big dreams often begin around a small table.</h2>
    <p>Choosing a future can feel like a big decision. You don't have to figure it out alone. Bring your questions, your family and your hopes. We'll help you find a way forward.</p>
-   <div class="motion-actions"><button id="motionPlay" type="button">▶ Watch the story</button><button id="motionPause" type="button" class="motion-quiet">Pause</button><button id="motionVoice" type="button">🔊 Watch with voice</button></div>
+   <div class="motion-actions"><button id="motionPlay" type="button">▶ Play story with voice</button></div>
    <div class="motion-progress"><span id="motionProgress"></span></div>
    <p class="motion-caption" id="motionCaption" aria-live="polite">One evening, a family sits together to talk about the future…</p>
   </div>
@@ -241,6 +252,9 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
     <g class="laptop"><rect x="490" y="206" width="140" height="100" rx="9" fill="#111a2b" stroke="#a4b4c9" stroke-width="4"/><rect x="499" y="215" width="122" height="81" rx="5" fill="url(#screenGlow)"/><circle cx="560" cy="246" r="18" fill="#9c6857"/><path d="M533 286q2-30 27-30t27 30" fill="#4b547d"/><path d="M485 307h150l-13 12H500Z" fill="#bdc8d5"/></g>
     <g class="scene-sparkles" fill="#ffd9a1"><path d="M590 135l5 13 13 5-13 5-5 13-5-13-13-5 13-5Z"/><path d="M465 110l4 10 10 4-10 4-4 10-4-10-10-4 10-4Z"/></g>
    </svg>
+   <div class="story-photo photo-before"><svg viewBox="0 0 240 140" aria-hidden="true"><rect width="240" height="140" rx="12" fill="#e8c9a8"/><rect y="95" width="240" height="45" fill="#98745e"/><rect x="18" y="17" width="70" height="56" rx="5" fill="#8fa9b8"/><path d="M53 17v56M18 45h70" stroke="#e9e4d8" stroke-width="4"/><circle cx="143" cy="57" r="21" fill="#b97b60"/><path d="M119 55q0-30 27-31q24 2 23 28q-25-17-50 3" fill="#343447"/><path d="M105 116q0-48 38-48t38 48" fill="#d49b67"/><path d="M185 95h35" stroke="#f4e6d4" stroke-width="5"/><text x="16" y="128" fill="#fff" font-size="10" font-weight="700">BEFORE · SO MANY QUESTIONS</text></svg></div>
+   <div class="story-photo photo-guide"><svg viewBox="0 0 240 140" aria-hidden="true"><rect width="240" height="140" rx="12" fill="#b8d7d0"/><rect x="17" y="15" width="206" height="110" rx="10" fill="#26374c"/><rect x="25" y="23" width="190" height="94" rx="6" fill="#d6e9df"/><circle cx="120" cy="55" r="19" fill="#c78968"/><path d="M93 108q0-38 27-38t27 38" fill="#6277a6"/><path d="M44 38h32m-32 9h22" stroke="#5d8c82" stroke-width="4" stroke-linecap="round"/><circle cx="189" cy="38" r="8" fill="#f0b17e"/><text x="16" y="132" fill="#20364a" font-size="10" font-weight="700">DURING · A REAL ADVISER LISTENS</text></svg></div>
+   <div class="story-photo photo-after"><svg viewBox="0 0 240 140" aria-hidden="true"><rect width="240" height="140" rx="12" fill="#b9d6c8"/><rect y="101" width="240" height="39" fill="#7c9c88"/><circle cx="76" cy="54" r="20" fill="#b97b60"/><circle cx="132" cy="49" r="20" fill="#d49b78"/><circle cx="184" cy="56" r="20" fill="#c98969"/><path d="M50 107q0-37 26-37t26 37m5 0q0-43 25-43t26 43m5 0q0-37 26-37t26 37" fill="#536f83"/><path d="M105 18l7 8 17-17" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="16" y="132" fill="#fff" font-size="10" font-weight="700">AFTER · A PLAN AND CONFIDENCE</text></svg></div>
    <div class="scene-floor"></div><div class="scene-label"><span class="scene-live-dot"></span> A conversation that opens possibilities</div>
   </div>
  </div>
@@ -267,24 +281,32 @@ body{background:radial-gradient(ellipse at 10% 5%,#243c5d 0,transparent 32%),rad
 <footer class="footer">© 2026 TechBridge · Guidance for every stage. Opportunities for every ambition.</footer>
 <script>
 (()=>{const scenes=[
- {caption:"One evening, a family sits together to talk about the future…",voice:"Every family has that conversation. What will you do next? What should you study? Which path will help you build the life you imagine?",duration:7200},
- {caption:"A young person has questions. The family has hopes, ideas and a few worries.",voice:"A young person has questions. The family has hopes, ideas and a few worries. There are so many choices, and it can be hard to know where to begin.",duration:7600},
- {caption:"Instead of guessing, they connect with someone who has real experience.",voice:"So they reach out to TechBridge. They meet an experienced adviser who listens, understands their interests, and shares practical guidance from the real world.",duration:7600},
- {caption:"Together, they explore options and make a practical plan.",voice:"Together, they explore career options, the skills to build, and the steps to take next. The family can be part of the conversation, too.",duration:7600},
- {caption:"A clearer direction. A little more confidence. A next step.",voice:"The future may still hold questions. But now, they have a direction, a plan, and someone to guide them. TechBridge. Your next step starts with a conversation.",duration:8200}
+ {caption:"Before TechBridge: a young person has big questions about the future.",voice:"Every family has that conversation. What should I study? Which career is right for me? What kind of future can I build? There are so many choices, and it is not always easy to know where to begin."},
+ {caption:"The family talks, listens and realises they could use some guidance.",voice:"At home, the family shares their hopes and worries. They want to support their child, but they also want advice from someone who understands today's careers and the skills employers are looking for."},
+ {caption:"With TechBridge, they connect with an experienced adviser.",voice:"That is where TechBridge comes in. They connect with an experienced career adviser. The adviser listens first, understands the young person's interests, and explains the options in simple, practical language."},
+ {caption:"Together, they explore choices, skills and a step-by-step roadmap.",voice:"Now the family can explore different career paths, the skills needed, courses to consider, and the steps to take next. They can ask questions and be part of the conversation."},
+ {caption:"After TechBridge: the family has a clearer plan and renewed confidence.",voice:"The future may still hold new questions, but the family is no longer guessing. They have a clearer direction, a practical plan, and guidance for the journey ahead. TechBridge. Your next step starts with a conversation."}
  ];
- const stage=document.getElementById('motionStage'),caption=document.getElementById('motionCaption'),bar=document.getElementById('motionProgress'),play=document.getElementById('motionPlay'),pause=document.getElementById('motionPause'),voice=document.getElementById('motionVoice');
- if(!stage||!play)return;let timer=null,index=0,withVoice=false,stopped=false;
+ const stage=document.getElementById('motionStage'),caption=document.getElementById('motionCaption'),bar=document.getElementById('motionProgress'),play=document.getElementById('motionPlay');
+ if(!stage||!play)return;let utterance=null,playing=false,paused=false,sceneIndex=0,fallbackTimers=[],boundarySeen=false;
  const supported=!!(window.speechSynthesis&&window.SpeechSynthesisUtterance);
- function speak(text,onEnd){if(!withVoice||!supported){onEnd();return;}window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=.91;u.pitch=1.02;u.onend=onEnd;u.onerror=onEnd;window.speechSynthesis.speak(u);}
- function show(i){index=i;stage.dataset.scene=String(i+1);caption.textContent=scenes[i].caption;bar.style.width=((i+1)/scenes.length*100)+'%';}
- function finish(){if(timer)clearTimeout(timer);timer=null;if(supported)window.speechSynthesis.cancel();play.textContent='↻ Watch the story again';if(voice)voice.textContent='🔊 Watch with voice';}
- function next(){if(stopped)return;if(index>=scenes.length-1){finish();return;}show(index+1);runScene();}
- function runScene(){const scene=scenes[index];let advanced=false;const advance=()=>{if(advanced||stopped)return;advanced=true;if(timer)clearTimeout(timer);next();};if(withVoice)speak(scene.voice,advance);timer=setTimeout(advance,scene.duration);}
- function run(voiceOn){finish();stopped=false;withVoice=!!voiceOn;if(withVoice&&!supported){caption.textContent='Voice is not available in this browser. Please try Chrome, Edge or Safari.';return;}if(voice)voice.textContent=withVoice?'🔊 Voice is on':'🔊 Watch with voice';show(0);play.textContent='Playing the story…';runScene();}
- play.addEventListener('click',()=>run(false));
- voice.addEventListener('click',()=>run(true));
- pause.addEventListener('click',()=>{stopped=true;if(timer)clearTimeout(timer);timer=null;if(supported)window.speechSynthesis.cancel();play.textContent='▶ Resume the story';});
+ const fullText=scenes.map(x=>x.voice).join(" ");
+ const starts=[];let offset=0;scenes.forEach(x=>{starts.push(offset);offset+=x.voice.length+1;});
+ function show(i){sceneIndex=i;stage.dataset.scene=String(i+1);caption.textContent=scenes[i].caption;bar.style.width=((i+1)/scenes.length*100)+'%';}
+ function clearTimers(){fallbackTimers.forEach(clearTimeout);fallbackTimers=[];}
+ function finish(){clearTimers();playing=false;paused=false;utterance=null;play.textContent='↻ Play story with voice';}
+ function updateSceneFromChar(pos){let idx=0;for(let i=0;i<starts.length;i++){if(pos>=starts[i])idx=i;}if(idx!==sceneIndex)show(idx);}
+ function scheduleFallback(){let elapsed=0;scenes.forEach((x,i)=>{const duration=(x.voice.split(/\s+/).length/2.05)*1000;elapsed+=duration;if(i<scenes.length-1){fallbackTimers.push(setTimeout(()=>{if(playing&&!boundarySeen)show(i+1);},elapsed));}});}
+ function chooseVoice(){const voices=window.speechSynthesis.getVoices();return voices.find(v=>/^en-IN$/i.test(v.lang))||voices.find(v=>/Indian English|India/i.test(v.name))||voices.find(v=>/^en-GB$/i.test(v.lang))||voices.find(v=>/^en-US$/i.test(v.lang))||null;}
+ function start(){if(!supported){caption.textContent='Voice playback is not supported in this browser. Please try a recent version of Chrome, Edge or Safari.';return;}
+ window.speechSynthesis.cancel();clearTimers();show(0);boundarySeen=false;utterance=new SpeechSynthesisUtterance(fullText);utterance.lang='en-IN';utterance.rate=.88;utterance.pitch=1.02;const selected=chooseVoice();if(selected)utterance.voice=selected;
+ utterance.onboundary=e=>{boundarySeen=true;if(typeof e.charIndex==='number')updateSceneFromChar(e.charIndex);};
+ utterance.onend=()=>{show(4);finish();};
+ utterance.onerror=e=>{if(e.error!=='canceled'&&e.error!=='interrupted'){caption.textContent='Voice playback stopped. Please press play to try again.';}finish();};
+ playing=true;paused=false;play.textContent='Ⅱ Pause story';scheduleFallback();window.speechSynthesis.speak(utterance);
+ }
+ play.addEventListener('click',()=>{if(!supported){start();return;}if(!playing){start();return;}if(!paused){window.speechSynthesis.pause();paused=true;play.textContent='▶ Resume story';}else{window.speechSynthesis.resume();paused=false;play.textContent='Ⅱ Pause story';}});
+ if(supported&&window.speechSynthesis.onvoiceschanged!==undefined)window.speechSynthesis.onvoiceschanged=()=>{};
  show(0);
 })();
 </script>
